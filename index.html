@@ -172,12 +172,12 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdro
 .configurator-section{background:var(--configurator-bg);padding:80px 0 0;position:relative;overflow:hidden;transition:background var(--trans-time) ease;}
 .configurator-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to left,transparent,var(--gold),transparent);}
 .config-header{padding:0 28px;margin-bottom:48px;}
-.config-steps{display:flex;align-items:center;padding:0 28px;margin-bottom:44px;gap:0;}
+.config-steps{display:flex;align-items:center;padding:0 20px;margin-bottom:44px;gap:0;}
 .config-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;cursor:pointer;transition:all 0.3s ease;}
-.step-circle{width:36px;height:36px;border:0.5px solid var(--step-inactive);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text-faint);transition:all 0.4s ease;position:relative;}
+.step-circle{width:32px;height:32px;border:0.5px solid var(--step-inactive);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--text-faint);transition:all 0.4s ease;position:relative;}
 .step-circle.active{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 4px rgba(196,150,90,0.1);}
-.step-circle.done{background:var(--gold);border-color:var(--gold);color:#0A0806;font-size:13px;}
-.step-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);transition:color 0.3s ease;text-align:center;white-space:nowrap;}
+.step-circle.done{background:var(--gold);border-color:var(--gold);color:#0A0806;font-size:12px;}
+.step-label{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);transition:color 0.3s ease;text-align:center;white-space:nowrap;}
 .config-step.active-step .step-label{color:var(--gold);}
 .step-connector{flex:1;height:0.5px;background:var(--step-inactive);margin:0;position:relative;top:-12px;transition:background 0.5s ease;}
 .step-connector.done{background:var(--gold);}
@@ -207,199 +207,107 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdro
 .size-unit{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);}
 .size-note{font-size:9px;color:var(--text-faint);margin-top:2px;}
 
-/* ═══════════════════════════════ FILLING MULTI-SELECT ═══════════════════════════════ */
-.filling-section-title {
-  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);
-  margin-bottom:12px;display:flex;align-items:center;gap:10px;
-}
-.filling-section-title::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
-.filling-multi-note{
-  font-size:10px;color:var(--rose);letter-spacing:1px;margin-bottom:16px;
-  display:flex;align-items:center;gap:6px;
-}
-.filling-multi-note svg{width:14px;height:14px;flex-shrink:0;}
-.filling-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
-.filling-chip{
-  border:0.5px solid var(--border-gold);border-radius:100px;padding:8px 16px;
-  cursor:pointer;font-size:12px;color:var(--text-muted);font-family:'Tajawal',sans-serif;
-  transition:all 0.3s ease;background:var(--option-bg);
-  display:flex;align-items:center;gap:6px;
-  -webkit-tap-highlight-color:transparent;position:relative;
-}
-.filling-chip:hover{border-color:var(--border-gold2);color:var(--text-primary);}
-.filling-chip.selected{
-  border-color:var(--gold);background:var(--option-selected-bg);
-  color:var(--gold-light);box-shadow:0 2px 12px rgba(196,150,90,0.15);
-}
-.filling-chip .chip-check{
-  width:14px;height:14px;border:0.5px solid var(--border-gold2);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:8px;color:transparent;transition:all 0.25s ease;flex-shrink:0;
-}
-.filling-chip.selected .chip-check{
-  background:var(--gold);border-color:var(--gold);color:#0A0806;
-}
-.filling-count-badge{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:20px;height:20px;background:var(--gold);color:#0A0806;
-  border-radius:100px;font-size:10px;font-weight:500;padding:0 6px;
-  margin-right:8px;transition:all 0.3s ease;
-  font-family:'Tajawal',sans-serif;
-}
-.filling-count-badge.empty{background:var(--border-gold);color:var(--text-faint);}
-.filling-selected-preview{
-  margin-top:12px;padding:12px 14px;
-  background:var(--option-selected-bg);border:0.5px solid var(--border-gold);
-  border-radius:4px;font-size:11px;color:var(--gold-light);
-  line-height:1.7;display:none;letter-spacing:0.5px;
-}
-.filling-selected-preview.visible{display:block;animation:panelFadeIn 0.3s ease;}
-.filling-selected-preview strong{
-  font-family:'Cormorant Garamond',serif;font-size:12px;
-  letter-spacing:2px;text-transform:uppercase;color:var(--gold);
-  display:block;margin-bottom:6px;
-}
-
-/* ─── شجرة الحشوات ─── */
-.tree-root-label{
-  font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);
-  margin-bottom:12px;display:flex;align-items:center;gap:10px;
-}
+/* ═══════════════════════════════ FILLING ═══════════════════════════════ */
+.tree-root-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
 .tree-root-label::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
 .tree-root-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
-.tree-root-card{
-  border:0.5px solid var(--border-gold);border-radius:6px;
-  padding:18px 14px;cursor:pointer;
-  background:var(--option-bg);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  position:relative;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
-  -webkit-tap-highlight-color:transparent;
-}
+.tree-root-card{border:0.5px solid var(--border-gold);border-radius:6px;padding:18px 14px;cursor:pointer;background:var(--option-bg);display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);-webkit-tap-highlight-color:transparent;}
 .tree-root-card:hover{border-color:var(--border-gold2);background:var(--option-hover);}
-.tree-root-card.active{
-  border-color:var(--gold);background:var(--option-selected-bg);
-  box-shadow:inset 0 0 0 0.5px var(--gold),0 4px 20px rgba(196,150,90,0.15);
-}
+.tree-root-card.active{border-color:var(--gold);background:var(--option-selected-bg);box-shadow:inset 0 0 0 0.5px var(--gold),0 4px 20px rgba(196,150,90,0.15);}
 .tree-root-icon{font-size:28px;display:block;}
 .tree-root-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text-primary);transition:color 0.3s;}
 .tree-root-card.active .tree-root-name{color:var(--gold-light);}
-.tree-root-check{
-  position:absolute;top:8px;left:10px;
-  width:18px;height:18px;border:0.5px solid var(--border-gold2);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:transparent;background:transparent;
-  transition:all 0.25s ease;
-}
-.tree-root-card.active .tree-root-check{
-  background:var(--gold);border-color:var(--gold);color:#0A0806;
-}
-.tree-branch{
-  margin-top:6px;
-  border-right:2px solid var(--border-gold2);
-  padding-right:14px;margin-right:4px;
-  animation:panelFadeIn 0.4s ease;
-}
-.tree-branch-header{
-  display:flex;align-items:center;gap:10px;margin-bottom:8px;margin-top:14px;
-}
+.tree-root-check{position:absolute;top:8px;left:10px;width:18px;height:18px;border:0.5px solid var(--border-gold2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:transparent;background:transparent;transition:all 0.25s ease;}
+.tree-root-card.active .tree-root-check{background:var(--gold);border-color:var(--gold);color:#0A0806;}
+.tree-branch{margin-top:6px;border-right:2px solid var(--border-gold2);padding-right:14px;margin-right:4px;animation:panelFadeIn 0.4s ease;}
+.tree-branch-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;margin-top:14px;}
 .tree-branch-line{flex:1;height:0.5px;background:var(--border-gold);}
-.tree-branch-title{
-  font-family:'Cormorant Garamond',serif;font-size:15px;
-  color:var(--text-muted);white-space:nowrap;letter-spacing:0.5px;
-}
-.tree-branch-note{
-  font-size:10px;color:var(--rose);letter-spacing:1px;
-  margin-bottom:12px;display:flex;align-items:center;gap:6px;
-}
+.tree-branch-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text-muted);white-space:nowrap;letter-spacing:0.5px;}
+.tree-branch-note{font-size:10px;color:var(--rose);letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
 .tree-branch-note::before{content:'✦';font-size:8px;}
-.choco-type-label{
-  font-size:10px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--text-faint);margin-bottom:8px;margin-top:4px;
-  display:flex;align-items:center;gap:8px;
-}
-.choco-type-label::before{content:'└';font-family:monospace;color:var(--border-gold2);}
-
-/* chip variants */
+.filling-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.filling-chip{border:0.5px solid var(--border-gold);border-radius:100px;padding:8px 16px;cursor:pointer;font-size:12px;color:var(--text-muted);font-family:'Tajawal',sans-serif;transition:all 0.3s ease;background:var(--option-bg);display:flex;align-items:center;gap:6px;-webkit-tap-highlight-color:transparent;position:relative;}
+.filling-chip:hover{border-color:var(--border-gold2);color:var(--text-primary);}
+.filling-chip.selected{border-color:var(--gold);background:var(--option-selected-bg);color:var(--gold-light);box-shadow:0 2px 12px rgba(196,150,90,0.15);}
+.filling-chip .chip-check{width:14px;height:14px;border:0.5px solid var(--border-gold2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:transparent;transition:all 0.25s ease;flex-shrink:0;}
+.filling-chip.selected .chip-check{background:var(--gold);border-color:var(--gold);color:#0A0806;}
 .filling-chip--white.selected{border-color:#E8E8E8;box-shadow:0 2px 12px rgba(232,232,232,0.15);}
 .filling-chip--ruby.selected{border-color:#E8A87C;box-shadow:0 2px 12px rgba(232,168,124,0.2);}
 .filling-chip--nuts.selected{border-color:var(--gold);box-shadow:0 2px 12px rgba(196,150,90,0.2);}
-
-
+.filling-count-badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;background:var(--gold);color:#0A0806;border-radius:100px;font-size:10px;font-weight:500;padding:0 6px;margin-right:8px;transition:all 0.3s ease;font-family:'Tajawal',sans-serif;}
+.filling-count-badge.empty{background:var(--border-gold);color:var(--text-faint);}
+.filling-selected-preview{margin-top:12px;padding:12px 14px;background:var(--option-selected-bg);border:0.5px solid var(--border-gold);border-radius:4px;font-size:11px;color:var(--gold-light);line-height:1.7;display:none;letter-spacing:0.5px;}
+.filling-selected-preview.visible{display:block;animation:panelFadeIn 0.3s ease;}
+.filling-selected-preview strong{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;}
 .layer-builder{margin-top:20px;}
-.layer-builder-title{
-  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);
-  margin-bottom:12px;display:flex;align-items:center;gap:10px;
-}
+.layer-builder-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
 .layer-builder-title::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
 .layers-list{display:flex;flex-direction:column;gap:8px;}
-.layer-row{
-  display:flex;align-items:center;gap:8px;padding:10px 14px;
-  background:var(--option-bg);border:0.5px solid var(--border-gold);
-  border-radius:4px;animation:panelFadeIn 0.3s ease;
-}
-.layer-num{
-  font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);
-  min-width:24px;font-weight:300;
-}
+.layer-row{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--option-bg);border:0.5px solid var(--border-gold);border-radius:4px;animation:panelFadeIn 0.3s ease;}
+.layer-num{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);min-width:24px;font-weight:300;}
 .layer-name{flex:1;font-size:13px;color:var(--text-primary);}
-.layer-remove{
-  width:26px;height:26px;border:0.5px solid var(--border-gold);border-radius:50%;
-  background:none;cursor:pointer;color:var(--text-faint);font-size:14px;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.25s ease;flex-shrink:0;
-}
+.layer-remove{width:26px;height:26px;border:0.5px solid var(--border-gold);border-radius:50%;background:none;cursor:pointer;color:var(--text-faint);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease;flex-shrink:0;}
 .layer-remove:hover{border-color:var(--rose);color:var(--rose);background:rgba(201,123,107,0.08);}
-.add-layer-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;padding:12px;margin-top:8px;
-  background:none;border:0.5px dashed var(--border-gold2);border-radius:4px;
-  color:var(--text-faint);font-family:'Tajawal',sans-serif;font-size:11px;
-  letter-spacing:2px;text-transform:uppercase;cursor:pointer;
-  transition:all 0.3s ease;
-}
+.add-layer-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;margin-top:8px;background:none;border:0.5px dashed var(--border-gold2);border-radius:4px;color:var(--text-faint);font-family:'Tajawal',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;}
 .add-layer-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(196,150,90,0.04);}
 .add-layer-btn:disabled{opacity:0.3;cursor:not-allowed;}
 
-.notes-area{width:100%;background:var(--option-bg);border:0.5px solid var(--border-gold);border-radius:4px;padding:16px;color:var(--text-primary);font-family:'Tajawal',sans-serif;font-size:13px;line-height:1.8;resize:none;height:130px;outline:none;transition:all 0.3s ease;direction:rtl;}
+/* ═══════════════════════════════ NOTES ═══════════════════════════════ */
+.notes-area{width:100%;background:var(--option-bg);border:0.5px solid var(--border-gold);border-radius:4px;padding:16px;color:var(--text-primary);font-family:'Tajawal',sans-serif;font-size:13px;line-height:1.8;resize:none;height:140px;outline:none;transition:all 0.3s ease;direction:rtl;}
 .notes-area:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,150,90,0.08);}
 .notes-area::placeholder{color:var(--text-faint);}
-.char-count{font-size:9px;color:var(--text-faint);text-align:left;margin-top:6px;}
+.char-count{font-size:9px;color:var(--text-faint);text-align:left;margin-top:6px;font-family:'Cormorant Garamond',serif;letter-spacing:1px;}
+.char-count span{color:var(--gold);}
+.notes-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.note-tag{border:0.5px solid var(--border-gold);border-radius:100px;padding:6px 12px;cursor:pointer;font-size:11px;color:var(--text-faint);font-family:'Tajawal',sans-serif;transition:all 0.3s ease;background:none;}
+.note-tag:hover{border-color:var(--gold);color:var(--gold);background:rgba(196,150,90,0.06);}
+.notes-hint{font-size:10px;color:var(--text-faint);letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.notes-hint::before{content:'◆';font-size:7px;color:var(--gold);}
+
 .config-nav{display:flex;justify-content:space-between;align-items:center;margin-top:32px;}
 .btn-config-next{background:var(--gold);color:#0A0806;padding:13px 28px;border-radius:2px;border:none;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;position:relative;overflow:hidden;}
 .btn-config-next:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,150,90,0.35);}
 .btn-config-next:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none;}
 .btn-config-prev{background:none;color:var(--text-muted);padding:13px 20px;border-radius:2px;border:0.5px solid var(--border-gold);font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;}
 .btn-config-prev:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ═══════════════════════════════ SUMMARY ═══════════════════════════════ */
 .order-summary{background:var(--summary-bg);border:0.5px solid var(--border-gold);border-radius:6px;padding:24px;margin-bottom:24px;transition:all var(--trans-time) ease;}
 .summary-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--gold-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
 .summary-title::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
 .summary-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid var(--border-gold);gap:16px;}
 .summary-row:last-child{border-bottom:none;}
 .summary-key{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);min-width:60px;padding-top:2px;}
-.summary-val{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--text-primary);text-align:left;flex:1;}
+.summary-val{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;color:var(--text-primary);text-align:left;flex:1;line-height:1.5;}
+.summary-notes-val{font-family:'Tajawal',sans-serif;font-size:13px;color:var(--text-muted);direction:rtl;line-height:1.7;}
 
-/* ── زر واتساب ── */
+/* ═══════════════════════════════ COPY ORDER ═══════════════════════════════ */
+.copy-section{margin-bottom:16px;}
+.copy-section-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.copy-section-label::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
+.order-text-preview{background:var(--option-bg);border:0.5px solid var(--border-gold);border-radius:4px;padding:16px;margin-bottom:12px;font-family:'Tajawal',sans-serif;font-size:12px;color:var(--text-muted);line-height:1.9;direction:rtl;white-space:pre-wrap;max-height:200px;overflow-y:auto;}
+.order-text-preview::-webkit-scrollbar{width:3px;}
+.order-text-preview::-webkit-scrollbar-track{background:transparent;}
+.order-text-preview::-webkit-scrollbar-thumb{background:var(--border-gold2);border-radius:10px;}
+.btn-copy-order{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--option-bg);border:0.5px solid var(--border-gold2);border-radius:4px;padding:14px 18px;cursor:pointer;transition:all 0.3s ease;font-family:'Tajawal',sans-serif;}
+.btn-copy-order:hover{border-color:var(--gold);background:var(--option-hover);}
+.btn-copy-order:active{transform:scale(0.98);}
+.copy-order-label-text{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.copy-order-icon{font-size:16px;}
+.copy-order-badge{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);border:0.5px solid var(--border-gold);border-radius:100px;padding:4px 10px;transition:all 0.3s ease;font-family:'Tajawal',sans-serif;}
+.btn-copy-order.copied .copy-order-badge{color:var(--gold);border-color:var(--gold);background:var(--option-selected-bg);}
+.btn-copy-order.copied .copy-order-label-text{color:var(--gold-light);}
+.copy-feedback{display:none;text-align:center;font-size:11px;color:var(--gold);letter-spacing:1.5px;margin-top:8px;padding:10px;border:0.5px solid var(--border-gold);border-radius:4px;background:var(--option-selected-bg);animation:panelFadeIn 0.3s ease;}
+.copy-feedback.show{display:block;}
+
+/* ═══════════════════════════════ WHATSAPP / INSTA ═══════════════════════════════ */
 .btn-whatsapp{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:#25D366;color:#fff;padding:16px;border-radius:2px;border:none;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;text-decoration:none;margin-bottom:10px;}
 .btn-whatsapp:hover{background:#1ebe57;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3);}
 .btn-whatsapp svg{width:20px;height:20px;flex-shrink:0;}
-
-/* ── زر إنستغرام ── */
 .btn-insta-order{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:transparent;border:0.5px solid var(--border-gold2);color:var(--gold);padding:14px;border-radius:2px;font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;text-decoration:none;position:relative;overflow:hidden;margin-bottom:10px;}
 .btn-insta-order::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 0.4s ease;z-index:-1;}
 .btn-insta-order:hover::before{transform:scaleX(1);transform-origin:left;}
 .btn-insta-order:hover{color:#0A0806;border-color:var(--gold);}
-
-/* ── زر نسخ الطلب ── */
-.btn-copy-order{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--option-bg);border:0.5px solid var(--border-gold2);border-radius:4px;padding:13px 18px;margin-bottom:16px;cursor:pointer;transition:all 0.3s ease;font-family:'Tajawal',sans-serif;}
-.btn-copy-order:hover{border-color:var(--gold);background:var(--option-hover);}
-.btn-copy-order:active{transform:scale(0.98);}
-.copy-order-label{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-.copy-order-icon{font-size:16px;}
-.copy-order-badge{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);border:0.5px solid var(--border-gold);border-radius:100px;padding:4px 10px;transition:all 0.3s ease;font-family:'Tajawal',sans-serif;}
-.btn-copy-order.copied .copy-order-badge{color:var(--gold);border-color:var(--gold);background:var(--option-selected-bg);}
-.btn-copy-order.copied .copy-order-label{color:var(--gold-light);}
-.copy-feedback{display:none;text-align:center;font-size:11px;color:var(--gold);letter-spacing:1.5px;margin-top:8px;padding:10px;border:0.5px solid var(--border-gold);border-radius:4px;background:var(--option-selected-bg);animation:panelFadeIn 0.3s ease;}
-.copy-feedback.show{display:block;}
 .reset-btn{background:none;border:none;cursor:pointer;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);font-family:'Tajawal',sans-serif;display:block;margin:16px auto 0;transition:color 0.3s ease;padding:8px;}
 .reset-btn:hover{color:var(--rose);}
 .hint-text{font-size:10px;color:var(--rose);letter-spacing:1px;margin-top:6px;display:none;}
@@ -433,9 +341,6 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text-primary);letter-spacing:4px;margin-bottom:16px;transition:color var(--trans-time) ease;}
 .footer-logo em{color:var(--gold);font-style:italic;}
 .footer-tagline{font-size:11px;color:var(--text-faint);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;font-weight:300;transition:color var(--trans-time) ease;}
-.footer-links{display:flex;gap:24px;margin-bottom:48px;}
-.footer-link{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color 0.3s ease;}
-.footer-link:hover{color:var(--gold);}
 .footer-social{display:flex;gap:14px;margin-bottom:48px;}
 .social-dot{width:36px;height:36px;border:0.5px solid var(--border-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text-faint);font-size:14px;transition:all 0.3s ease;}
 .social-dot:hover{border-color:var(--gold);color:var(--gold);background:rgba(196,150,90,0.08);}
@@ -527,9 +432,9 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
     </div>
   </div>
   <div class="stats-row">
-    <div class="stat-item"><div class="stat-num">٥٠٠+</div><div class="stat-label">طلب منجز</div></div>
-    <div class="stat-item"><div class="stat-num">١٢+</div><div class="stat-label">نوع حشوة</div></div>
-    <div class="stat-item"><div class="stat-num">١٠٠٪</div><div class="stat-label">طازج يومياً</div></div>
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">طلب منجز</div></div>
+    <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">نوع حشوة</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">طازج يومياً</div></div>
   </div>
 </section>
 
@@ -541,7 +446,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
   </div>
   <div class="menu-cards">
     <div class="menu-card">
-      <img src="1000326691.png" alt="كعكة ميلاد الأميرة" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop" alt="كعكة ميلاد الأميرة" loading="lazy">
       <div class="menu-card-overlay">
         <span class="card-tag">◆ كعكات أعياد الميلاد</span>
         <div class="card-name">كعكة ميلاد الأميرة</div>
@@ -553,7 +458,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       </div>
     </div>
     <div class="menu-card">
-      <img src="1000326689.png" alt="تارت الليمون" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop" alt="تارت الليمون" loading="lazy">
       <div class="menu-card-overlay">
         <span class="card-tag">◆ حلويات فرنسية</span>
         <div class="card-name">تارت الليمون والميرانغ</div>
@@ -565,7 +470,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       </div>
     </div>
     <div class="menu-card">
-      <img src="1000326688.png" alt="تشيز كيك" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1567171466295-4afa63d45416?q=80&w=800&auto=format&fit=crop" alt="تشيز كيك" loading="lazy">
       <div class="menu-card-overlay">
         <span class="card-tag">◆ أطباق باردة</span>
         <div class="card-name">تشيز كيك متنوع</div>
@@ -577,7 +482,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       </div>
     </div>
     <div class="menu-card">
-      <img src="1000326692.png" alt="كعكة زفاف" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?q=80&w=800&auto=format&fit=crop" alt="كعكة زفاف" loading="lazy">
       <div class="menu-card-overlay">
         <span class="card-tag">◆ كعكات الزفاف</span>
         <div class="card-name">كعكة زفاف كلاسيكية</div>
@@ -598,11 +503,11 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
     <h2 class="about-title">ما <em>نتقنه</em></h2>
   </div>
   <div class="spec-list">
-    <div class="spec-item"><span class="spec-num">٠١</span><span class="spec-name">تورتات الأعراس</span><span class="spec-arr">←</span></div>
-    <div class="spec-item"><span class="spec-num">٠٢</span><span class="spec-name">كيك أعياد الميلاد</span><span class="spec-arr">←</span></div>
-    <div class="spec-item"><span class="spec-num">٠٣</span><span class="spec-name">حلويات المناسبات</span><span class="spec-arr">←</span></div>
-    <div class="spec-item"><span class="spec-num">٠٤</span><span class="spec-name">طلبات الشركات</span><span class="spec-arr">←</span></div>
-    <div class="spec-item"><span class="spec-num">٠٥</span><span class="spec-name">تصاميم مخصصة</span><span class="spec-arr">←</span></div>
+    <div class="spec-item"><span class="spec-num">01</span><span class="spec-name">تورتات الأعراس</span><span class="spec-arr">←</span></div>
+    <div class="spec-item"><span class="spec-num">02</span><span class="spec-name">كيك أعياد الميلاد</span><span class="spec-arr">←</span></div>
+    <div class="spec-item"><span class="spec-num">03</span><span class="spec-name">حلويات المناسبات</span><span class="spec-arr">←</span></div>
+    <div class="spec-item"><span class="spec-num">04</span><span class="spec-name">طلبات الشركات</span><span class="spec-arr">←</span></div>
+    <div class="spec-item"><span class="spec-num">05</span><span class="spec-name">تصاميم مخصصة</span><span class="spec-arr">←</span></div>
   </div>
 </section>
 
@@ -617,27 +522,27 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
   <!-- STEPS -->
   <div class="config-steps">
     <div class="config-step active-step" id="stepBtn1" onclick="goToStep(1)">
-      <div class="step-circle active" id="stepCircle1">١</div>
+      <div class="step-circle active" id="stepCircle1">1</div>
       <span class="step-label">النوع</span>
     </div>
     <div class="step-connector" id="stepConn1"></div>
     <div class="config-step" id="stepBtn2" onclick="goToStep(2)">
-      <div class="step-circle" id="stepCircle2">٢</div>
+      <div class="step-circle" id="stepCircle2">2</div>
       <span class="step-label">الحجم</span>
     </div>
     <div class="step-connector" id="stepConn2"></div>
     <div class="config-step" id="stepBtn3" onclick="goToStep(3)">
-      <div class="step-circle" id="stepCircle3">٣</div>
+      <div class="step-circle" id="stepCircle3">3</div>
       <span class="step-label">الحشوة</span>
     </div>
     <div class="step-connector" id="stepConn3"></div>
     <div class="config-step" id="stepBtn4" onclick="goToStep(4)">
-      <div class="step-circle" id="stepCircle4">٤</div>
+      <div class="step-circle" id="stepCircle4">4</div>
       <span class="step-label">ملاحظات</span>
     </div>
     <div class="step-connector" id="stepConn4"></div>
     <div class="config-step" id="stepBtn5" onclick="goToStep(5)">
-      <div class="step-circle" id="stepCircle5">٥</div>
+      <div class="step-circle" id="stepCircle5">5</div>
       <span class="step-label">الطلب</span>
     </div>
   </div>
@@ -647,7 +552,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
     <!-- PANEL 1: TYPE -->
     <div class="config-panel active" id="panel1">
       <div class="panel-title">اختر نوع الحلوى</div>
-      <div class="panel-subtitle">اختيار واحد • انقر للتحديد</div>
+      <div class="panel-subtitle">اختيار واحد · انقر للتحديد</div>
       <div class="options-grid">
         <div class="option-card" onclick="selectOption(this,'type','كيك')">
           <span class="option-emoji">🎂</span>
@@ -667,7 +572,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
         <div class="option-card" onclick="selectOption(this,'type','بتي فور')">
           <span class="option-emoji">🍮</span>
           <div class="option-name">بتي فور</div>
-          <div class="option-desc">قطع فاخرة </div>
+          <div class="option-desc">قطع فاخرة</div>
         </div>
       </div>
       <p class="hint-text" id="hintType">يرجى اختيار نوع الحلوى للمتابعة</p>
@@ -682,30 +587,30 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       <div class="panel-title">اختر الحجم</div>
       <div class="panel-subtitle">قطر الكيك بالسنتيمتر</div>
       <div class="size-grid">
-        <div class="size-card" onclick="selectOption(this,'size','١٥ سم')">
-          <span class="size-cm">١٥</span>
+        <div class="size-card" onclick="selectOption(this,'size','15 سم')">
+          <span class="size-cm">15</span>
           <span class="size-unit">سم</span>
-          <div class="size-note">٤–٦ أشخاص</div>
+          <div class="size-note">4–6 أشخاص</div>
         </div>
-        <div class="size-card" onclick="selectOption(this,'size','٢٠ سم')">
-          <span class="size-cm">٢٠</span>
+        <div class="size-card" onclick="selectOption(this,'size','20 سم')">
+          <span class="size-cm">20</span>
           <span class="size-unit">سم</span>
-          <div class="size-note">٨–١٠</div>
+          <div class="size-note">8–10</div>
         </div>
-        <div class="size-card" onclick="selectOption(this,'size','٢٥ سم')">
-          <span class="size-cm">٢٥</span>
+        <div class="size-card" onclick="selectOption(this,'size','25 سم')">
+          <span class="size-cm">25</span>
           <span class="size-unit">سم</span>
-          <div class="size-note">١٢–١٥</div>
+          <div class="size-note">12–15</div>
         </div>
-        <div class="size-card" onclick="selectOption(this,'size','٣٠ سم')">
-          <span class="size-cm">٣٠</span>
+        <div class="size-card" onclick="selectOption(this,'size','30 سم')">
+          <span class="size-cm">30</span>
           <span class="size-unit">سم</span>
-          <div class="size-note">١٨–٢٠</div>
+          <div class="size-note">18–20</div>
         </div>
-        <div class="size-card" onclick="selectOption(this,'size','٣٥ سم')">
-          <span class="size-cm">٣٥</span>
+        <div class="size-card" onclick="selectOption(this,'size','35 سم')">
+          <span class="size-cm">35</span>
           <span class="size-unit">سم</span>
-          <div class="size-note">+٢٥</div>
+          <div class="size-note">+25</div>
         </div>
       </div>
       <p class="hint-text" id="hintSize">يرجى اختيار الحجم للمتابعة</p>
@@ -715,38 +620,31 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       </div>
     </div>
 
-    <!-- PANEL 3: FILLING – TREE MULTI-SELECT -->
+    <!-- PANEL 3: FILLING -->
     <div class="config-panel" id="panel3">
       <div class="panel-title">اختر الحشوة</div>
       <div class="panel-subtitle">اختر الأساس ثم خصّص · يمكن تعدد الاختيار</div>
 
-      <!-- شريط العدد -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
         <span class="filling-count-badge empty" id="fillingCountBadge">0</span>
         <span style="font-size:11px;color:var(--text-faint);letter-spacing:1px;">حشوة محددة</span>
       </div>
 
-      <!-- ══════════ الاختيار الرئيسي ══════════ -->
       <div class="tree-root-label">اختر الأساس</div>
       <div class="tree-root-row">
-
-        <!-- بطاقة فانيلا -->
         <div class="tree-root-card" id="rootVanilla" onclick="toggleRoot('vanilla')">
           <span class="tree-root-icon">🤍</span>
           <span class="tree-root-name">فانيلا</span>
           <span class="tree-root-check" id="checkVanilla">✓</span>
         </div>
-
-        <!-- بطاقة شوكولاتة -->
         <div class="tree-root-card" id="rootChoco" onclick="toggleRoot('choco')">
           <span class="tree-root-icon">🍫</span>
           <span class="tree-root-name">شوكولاتة</span>
           <span class="tree-root-check" id="checkChoco">✓</span>
         </div>
-
       </div>
 
-      <!-- ══════════ فروع الفانيلا ══════════ -->
+      <!-- فروع الفانيلا -->
       <div class="tree-branch" id="branchVanilla" style="display:none;">
         <div class="tree-branch-header">
           <span class="tree-branch-line"></span>
@@ -755,20 +653,20 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
         </div>
         <div class="tree-branch-note">يمكن اختيار أكثر من فاكهة</div>
         <div class="filling-grid">
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + فراولة')"><span class="chip-check">✓</span>🍓 فراولة</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + توت')"><span class="chip-check">✓</span>🫐 توت</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + مانجو')"><span class="chip-check">✓</span>🥭 مانجو</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + ليمون')"><span class="chip-check">✓</span>🍋 ليمون</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + خوخ')"><span class="chip-check">✓</span>🍑 خوخ</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + تفاح مسكر')"><span class="chip-check">✓</span>🍎 تفاح مسكر</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + مشمش')"><span class="chip-check">✓</span>🟠 مشمش</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + موز')"><span class="chip-check">✓</span>🍌 موز</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + كيوي')"><span class="chip-check">✓</span>🥝 كيوي</div>
-          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + أناناس')"><span class="chip-check">✓</span>🍍 أناناس</div>
+          <div class="filling-chip" data-val="فانيلا + فراولة" onclick="toggleFilling(this,'فانيلا + فراولة')"><span class="chip-check">✓</span>🍓 فراولة</div>
+          <div class="filling-chip" data-val="فانيلا + توت" onclick="toggleFilling(this,'فانيلا + توت')"><span class="chip-check">✓</span>🫐 توت</div>
+          <div class="filling-chip" data-val="فانيلا + مانجو" onclick="toggleFilling(this,'فانيلا + مانجو')"><span class="chip-check">✓</span>🥭 مانجو</div>
+          <div class="filling-chip" data-val="فانيلا + ليمون" onclick="toggleFilling(this,'فانيلا + ليمون')"><span class="chip-check">✓</span>🍋 ليمون</div>
+          <div class="filling-chip" data-val="فانيلا + خوخ" onclick="toggleFilling(this,'فانيلا + خوخ')"><span class="chip-check">✓</span>🍑 خوخ</div>
+          <div class="filling-chip" data-val="فانيلا + تفاح مسكر" onclick="toggleFilling(this,'فانيلا + تفاح مسكر')"><span class="chip-check">✓</span>🍎 تفاح مسكر</div>
+          <div class="filling-chip" data-val="فانيلا + مشمش" onclick="toggleFilling(this,'فانيلا + مشمش')"><span class="chip-check">✓</span>🟠 مشمش</div>
+          <div class="filling-chip" data-val="فانيلا + موز" onclick="toggleFilling(this,'فانيلا + موز')"><span class="chip-check">✓</span>🍌 موز</div>
+          <div class="filling-chip" data-val="فانيلا + كيوي" onclick="toggleFilling(this,'فانيلا + كيوي')"><span class="chip-check">✓</span>🥝 كيوي</div>
+          <div class="filling-chip" data-val="فانيلا + أناناس" onclick="toggleFilling(this,'فانيلا + أناناس')"><span class="chip-check">✓</span>🍍 أناناس</div>
         </div>
       </div>
 
-      <!-- ══════════ فروع الشوكولاتة ══════════ -->
+      <!-- فروع الشوكولاتة -->
       <div class="tree-branch" id="branchChoco" style="display:none;">
         <div class="tree-branch-header">
           <span class="tree-branch-line"></span>
@@ -776,45 +674,32 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
           <span class="tree-branch-line"></span>
         </div>
         <div class="tree-branch-note">يمكن اختيار أكثر من نوع</div>
-
-        <!-- شوكولاتة بيضاء -->
-    
         <div class="filling-grid" style="margin-bottom:14px;">
-         
-         
-          <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة  + كرانشي')"><span class="chip-check">✓</span>+ كرانشي</div>
-          <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة  + نتيلا')"><span class="chip-check">✓</span>+ نتيلا</div>
-             <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة  + بيضاء')"><span class="chip-check">✓</span>+ بيضاء</div>
+          <div class="filling-chip filling-chip--white" data-val="شوكولاتة + كرانشي" onclick="toggleFilling(this,'شوكولاتة + كرانشي')"><span class="chip-check">✓</span>+ كرانشي</div>
+          <div class="filling-chip filling-chip--white" data-val="شوكولاتة + نتيلا" onclick="toggleFilling(this,'شوكولاتة + نتيلا')"><span class="chip-check">✓</span>+ نتيلا</div>
+          <div class="filling-chip filling-chip--white" data-val="شوكولاتة + بيضاء" onclick="toggleFilling(this,'شوكولاتة + بيضاء')"><span class="chip-check">✓</span>+ بيضاء</div>
         </div>
-
-        <!-- شوكولاتة مرجان -->
-
         <div class="filling-grid" style="margin-bottom:14px;">
-          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة  كريمي')"><span class="chip-check">✓</span>كريمي</div>
-          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة  + بسيطة')"><span class="chip-check">✓</span>+ بسيطة</div>
-          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة  + فراولة')"><span class="chip-check">✓</span>+ فراولة</div>
-          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة  + ميكس')"><span class="chip-check">✓</span>+ ميكس</div>
-          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة  + مرجان')"><span class="chip-check">✓</span>+ مرجان</div>
-     
-
-        <!-- مكسرات -->
-       
+          <div class="filling-chip filling-chip--ruby" data-val="شوكولاتة كريمي" onclick="toggleFilling(this,'شوكولاتة كريمي')"><span class="chip-check">✓</span>كريمي</div>
+          <div class="filling-chip filling-chip--ruby" data-val="شوكولاتة + بسيطة" onclick="toggleFilling(this,'شوكولاتة + بسيطة')"><span class="chip-check">✓</span>+ بسيطة</div>
+          <div class="filling-chip filling-chip--ruby" data-val="شوكولاتة + فراولة" onclick="toggleFilling(this,'شوكولاتة + فراولة')"><span class="chip-check">✓</span>+ فراولة</div>
+          <div class="filling-chip filling-chip--ruby" data-val="شوكولاتة + ميكس" onclick="toggleFilling(this,'شوكولاتة + ميكس')"><span class="chip-check">✓</span>+ ميكس</div>
+          <div class="filling-chip filling-chip--ruby" data-val="شوكولاتة + مرجان" onclick="toggleFilling(this,'شوكولاتة + مرجان')"><span class="chip-check">✓</span>+ مرجان</div>
+        </div>
         <div class="filling-grid">
-          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + لوز')"><span class="chip-check">✓</span>لوز</div>
-          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + بيستاش')"><span class="chip-check">✓</span>بيستاش</div>
-          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + كاجو')"><span class="chip-check">✓</span>كاجو</div>
-          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + لوز وبيستاش')"><span class="chip-check">✓</span>لوز + بيستاش</div>
-          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + مكسرات متنوعة')"><span class="chip-check">✓</span>مكسرات متنوعة</div>
-
+          <div class="filling-chip filling-chip--nuts" data-val="شوكولاتة + لوز" onclick="toggleFilling(this,'شوكولاتة + لوز')"><span class="chip-check">✓</span>لوز</div>
+          <div class="filling-chip filling-chip--nuts" data-val="شوكولاتة + بيستاش" onclick="toggleFilling(this,'شوكولاتة + بيستاش')"><span class="chip-check">✓</span>بيستاش</div>
+          <div class="filling-chip filling-chip--nuts" data-val="شوكولاتة + كاجو" onclick="toggleFilling(this,'شوكولاتة + كاجو')"><span class="chip-check">✓</span>كاجو</div>
+          <div class="filling-chip filling-chip--nuts" data-val="شوكولاتة + لوز وبيستاش" onclick="toggleFilling(this,'شوكولاتة + لوز وبيستاش')"><span class="chip-check">✓</span>لوز + بيستاش</div>
+          <div class="filling-chip filling-chip--nuts" data-val="شوكولاتة + مكسرات متنوعة" onclick="toggleFilling(this,'شوكولاتة + مكسرات متنوعة')"><span class="chip-check">✓</span>مكسرات متنوعة</div>
+        </div>
       </div>
 
-      <!-- معاينة المختارات -->
       <div class="filling-selected-preview" id="fillingPreview">
         <strong>الحشوات المختارة</strong>
         <span id="fillingPreviewText"></span>
       </div>
 
-      <!-- منشئ الطبقات -->
       <div class="layer-builder" id="layerBuilder" style="display:none;">
         <div class="layer-builder-title">ترتيب الطبقات</div>
         <div class="layers-list" id="layersList"></div>
@@ -831,19 +716,31 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
     <!-- PANEL 4: NOTES -->
     <div class="config-panel" id="panel4">
       <div class="panel-title">ملاحظات إضافية</div>
-      <div class="panel-subtitle">اكتب أي تفاصيل أو رغبات خاصة</div>
-      <textarea class="notes-area" id="notesArea" maxlength="300" placeholder="مثال: أريد الكتابة باللون الذهبي، تاريخ التسليم: ..." oninput="updateCharCount()"></textarea>
-      <div class="char-count"><span id="charNum">0</span> / 300</div>
+      <div class="panel-subtitle">اكتب أي تفاصيل أو رغبات خاصة · اختياري</div>
+
+      <div class="notes-hint">اقتراحات سريعة — انقر للإضافة</div>
+      <div class="notes-suggestions">
+        <button class="note-tag" onclick="addNoteTag('كتابة باللون الذهبي')">✍ كتابة ذهبية</button>
+        <button class="note-tag" onclick="addNoteTag('بدون سكر')">🚫 بدون سكر</button>
+        <button class="note-tag" onclick="addNoteTag('حساسية من المكسرات')">⚠ حساسية مكسرات</button>
+        <button class="note-tag" onclick="addNoteTag('تسليم عاجل')">⚡ تسليم عاجل</button>
+        <button class="note-tag" onclick="addNoteTag('تصميم خاص')">🎨 تصميم خاص</button>
+        <button class="note-tag" onclick="addNoteTag('هدية مفاجأة')">🎁 هدية مفاجأة</button>
+      </div>
+
+      <textarea class="notes-area" id="notesArea" maxlength="400" placeholder="مثال: أريد الكتابة باللون الذهبي، تاريخ التسليم: 15/7، اسم العروس: سارة..." oninput="updateCharCount()"></textarea>
+      <div class="char-count"><span id="charNum">0</span> / 400 حرف</div>
+
       <div class="config-nav">
         <button class="btn-config-prev" onclick="prevStep(4)">← رجوع</button>
         <button class="btn-config-next" onclick="nextStep(4)">مراجعة الطلب →</button>
       </div>
     </div>
 
-    <!-- PANEL 5: SUMMARY -->
+    <!-- PANEL 5: SUMMARY + COPY -->
     <div class="config-panel" id="panel5">
       <div class="panel-title">ملخص الطلب</div>
-      <div class="panel-subtitle">راجع طلبك قبل الإرسال</div>
+      <div class="panel-subtitle">راجع طلبك ثم انسخه أو أرسله مباشرة</div>
 
       <div class="order-summary">
         <div class="summary-title">تفاصيل الطلب</div>
@@ -865,27 +762,31 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
         </div>
         <div class="summary-row" id="sumNotesRow" style="display:none;">
           <span class="summary-key">ملاحظات</span>
-          <span class="summary-val" id="sumNotes">–</span>
+          <span class="summary-val summary-notes-val" id="sumNotes">–</span>
         </div>
       </div>
 
       <!-- نسخ الطلب -->
-      <button class="btn-copy-order" id="copyOrderBtn" onclick="copyOrder()">
-        <span class="copy-order-label">
-          <span class="copy-order-icon">📋</span>
-          نسخ الطلب
-        </span>
-        <span class="copy-order-badge" id="copyBadge">نسخ</span>
-      </button>
-      <div class="copy-feedback" id="copyFeedback">✓ تم نسخ الطلب بنجاح</div>
+      <div class="copy-section">
+        <div class="copy-section-label">نص الطلب الجاهز للإرسال</div>
+        <div class="order-text-preview" id="orderTextPreview"></div>
+        <button class="btn-copy-order" id="copyOrderBtn" onclick="copyOrder()">
+          <span class="copy-order-label-text">
+            <span class="copy-order-icon">📋</span>
+            نسخ الطلب كاملاً
+          </span>
+          <span class="copy-order-badge" id="copyBadge">نسخ</span>
+        </button>
+        <div class="copy-feedback" id="copyFeedback">✓ تم نسخ الطلب — الآن الصقه في أي تطبيق</div>
+      </div>
 
-      <!-- زر واتساب -->
+      <!-- واتساب -->
       <a href="#" id="whatsappBtn" class="btn-whatsapp" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         إرسال عبر واتساب
       </a>
 
-      <!-- زر إنستغرام -->
+      <!-- إنستغرام -->
       <a href="https://www.instagram.com/_moni_cook_03/" target="_blank" rel="noopener" class="btn-insta-order">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         تواصل عبر إنستغرام
@@ -926,14 +827,14 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
     <h2 class="about-title">نحن <em>هنا</em></h2>
     <div class="contact-list">
       <div class="contact-item">
-        <div class="ci-number">١</div>
+        <div class="ci-number">1</div>
         <div class="ci-content">
           <div class="ci-label">واتساب</div>
           <a href="https://wa.me/qr/FMOJITEW2ZM7O1" target="_blank" rel="noopener" class="ci-value" style="color:inherit;text-decoration:none;">تواصل الآن</a>
         </div>
       </div>
       <div class="contact-item">
-        <div class="ci-number">٢</div>
+        <div class="ci-number">2</div>
         <div class="ci-content">
           <div class="ci-label">إنستغرام</div>
           <a href="https://www.instagram.com/_moni_cook_03/" target="_blank" rel="noopener" class="ci-value" style="color:inherit;text-decoration:none;">@_moni_cook_03</a>
@@ -955,7 +856,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
     </a>
   </div>
-  <div class="footer-copy">© ٢٠٢٥ Moni Cook · جميع الحقوق محفوظة</div>
+  <div class="footer-copy">© 2025 Moni Cook · جميع الحقوق محفوظة</div>
 </footer>
 
 <script>
@@ -965,12 +866,12 @@ const ring = document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
 (function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
-document.querySelectorAll('a,button,.option-card,.size-card,.filling-chip,.spec-item,.menu-card').forEach(el=>{
+document.querySelectorAll('a,button,.option-card,.size-card,.filling-chip,.spec-item,.menu-card,.tree-root-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');ring.classList.add('hover');});
   el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');ring.classList.remove('hover');});
 });
 
-/* ═══════ NAV ═══════ */
+/* ═══════ NAV SCROLL ═══════ */
 window.addEventListener('scroll',()=>{
   document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
 });
@@ -1004,17 +905,19 @@ function toggleTheme(){
   document.getElementById('themeLabel').textContent=isDark?'فاتح':'داكن';
 }
 
-/* ═══════════════════════════════════════
+/* ═══════════════════════════════
    CONFIGURATOR STATE
-═══════════════════════════════════════ */
+═══════════════════════════════ */
 let selections={type:'',size:'',fillings:[],layers:[],notes:''};
 
-/* ── خيار واحد (نوع / حجم) ── */
+/* ── اختيار واحد (نوع / حجم) ── */
 function selectOption(el,field,val){
-  el.closest('.options-grid,.size-grid').querySelectorAll('.option-card,.size-card').forEach(c=>c.classList.remove('selected'));
+  const container=el.closest('.options-grid,.size-grid');
+  container.querySelectorAll('.option-card,.size-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   selections[field]=val;
-  document.getElementById('hint'+field.charAt(0).toUpperCase()+field.slice(1)).classList.remove('show');
+  const hint=document.getElementById('hint'+field.charAt(0).toUpperCase()+field.slice(1));
+  if(hint) hint.classList.remove('show');
 }
 
 /* ═══════ FILLING TREE ═══════ */
@@ -1022,27 +925,17 @@ let activeRoots={vanilla:false,choco:false};
 
 function toggleRoot(root){
   activeRoots[root]=!activeRoots[root];
-  const card=document.getElementById('root'+root.charAt(0).toUpperCase()+root.slice(1));
-  const branch=document.getElementById('branch'+root.charAt(0).toUpperCase()+root.slice(1));
+  const capRoot=root.charAt(0).toUpperCase()+root.slice(1);
+  const card=document.getElementById('root'+capRoot);
+  const branch=document.getElementById('branch'+capRoot);
   card.classList.toggle('active',activeRoots[root]);
   branch.style.display=activeRoots[root]?'block':'none';
 
-  // إذا أُلغي الجذر أزل كل حشواته
   if(!activeRoots[root]){
     const prefix=root==='vanilla'?'فانيلا':'شوكولاتة';
-    // أزل من selections + أزل selected من الـ chips
-    selections.fillings=selections.fillings.filter(f=>{
-      if(f.startsWith(prefix)){
-        branch.querySelectorAll('.filling-chip').forEach(c=>{
-          if(c.onclick&&c.onclick.toString().includes(f))c.classList.remove('selected');
-        });
-        return false;
-      }
-      return true;
-    });
-    // أزل بـ data attr بدلاً من toString
     branch.querySelectorAll('.filling-chip.selected').forEach(c=>c.classList.remove('selected'));
     selections.fillings=selections.fillings.filter(f=>!f.startsWith(prefix));
+    selections.layers=selections.layers.filter(l=>!l.startsWith(prefix));
     updateFillingUI();
   }
 }
@@ -1076,14 +969,14 @@ function updateFillingUI(){
     preview.classList.remove('visible');
   }
 
-  const layerBuilder=document.getElementById('layerBuilder');
+  const lb=document.getElementById('layerBuilder');
   if(count>1){
-    layerBuilder.style.display='block';
-    selections.layers=selections.fillings.filter(f=>selections.layers.includes(f));
+    lb.style.display='block';
     selections.fillings.forEach(f=>{if(!selections.layers.includes(f))selections.layers.push(f);});
+    selections.layers=selections.layers.filter(f=>selections.fillings.includes(f)||selections.fillings.length===0);
     renderLayers();
   } else {
-    layerBuilder.style.display='none';
+    lb.style.display='none';
     selections.layers=[];
   }
   document.getElementById('hintFilling').classList.remove('show');
@@ -1103,15 +996,12 @@ function renderLayers(){
     `;
     list.appendChild(row);
   });
-  // زر الإضافة: فقط إذا لم تُضف كل الحشوات كطبقات بعد
   addBtn.disabled=selections.layers.length>=selections.fillings.length*2;
 }
 
 function addLayer(){
-  // أضف نسخة إضافية من أول حشوة
   if(selections.fillings.length===0)return;
-  const first=selections.fillings[0];
-  selections.layers.push(first);
+  selections.layers.push(selections.fillings[0]);
   renderLayers();
 }
 
@@ -1120,11 +1010,24 @@ function removeLayer(idx){
   renderLayers();
 }
 
+/* ═══════ NOTES TAGS ═══════ */
+function addNoteTag(text){
+  const area=document.getElementById('notesArea');
+  const cur=area.value.trim();
+  area.value=cur?(cur+' · '+text):text;
+  updateCharCount();
+  area.focus();
+}
+
+function updateCharCount(){
+  document.getElementById('charNum').textContent=document.getElementById('notesArea').value.length;
+}
+
 /* ═══════ STEPS NAV ═══════ */
 let currentStep=1;
 
 function goToStep(n){
-  if(n>currentStep)return; // لا تقفز للأمام إلا عبر "التالي"
+  if(n>currentStep)return;
   showPanel(n);
 }
 
@@ -1144,7 +1047,9 @@ function showPanel(n){
   document.getElementById('panel'+n).classList.add('active');
   currentStep=n;
   updateStepUI(n);
-  document.getElementById('configurator').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>{
+    document.getElementById('configurator').scrollIntoView({behavior:'smooth',block:'start'});
+  },50);
 }
 
 function markStepDone(n){
@@ -1164,6 +1069,28 @@ function updateStepUI(n){
   }
 }
 
+/* ═══════ BUILD ORDER TEXT ═══════ */
+function buildOrderText(){
+  const date=new Date().toLocaleDateString('ar-DZ',{day:'numeric',month:'long',year:'numeric'});
+  let t='';
+  t+='🍰 طلب جديد — Moni Cook\n';
+  t+='─────────────────────\n';
+  t+=`📅 التاريخ: ${date}\n\n`;
+  t+=`▪ النوع: ${selections.type}\n`;
+  t+=`▪ الحجم: ${selections.size}\n`;
+  t+=`▪ الحشوة: ${selections.fillings.join('، ')}\n`;
+  if(selections.layers.length>1){
+    t+='▪ ترتيب الطبقات:\n';
+    selections.layers.forEach((l,i)=>{t+=`   ${i+1}. ${l}\n`;});
+  }
+  if(selections.notes.trim()){
+    t+=`\n📝 ملاحظات:\n${selections.notes}\n`;
+  }
+  t+='─────────────────────\n';
+  t+='📲 @_moni_cook_03';
+  return t;
+}
+
 /* ═══════ SUMMARY ═══════ */
 function buildSummary(){
   document.getElementById('sumType').textContent=selections.type||'–';
@@ -1173,7 +1100,7 @@ function buildSummary(){
   const layersRow=document.getElementById('sumLayersRow');
   if(selections.layers.length>1){
     layersRow.style.display='flex';
-    document.getElementById('sumLayers').textContent=selections.layers.map((l,i)=>`طبقة ${i+1}: ${l}`).join(' | ');
+    document.getElementById('sumLayers').textContent=selections.layers.map((l,i)=>`${i+1}. ${l}`).join(' | ');
   } else {
     layersRow.style.display='none';
   }
@@ -1186,24 +1113,10 @@ function buildSummary(){
     notesRow.style.display='none';
   }
 
-  // بناء رسالة واتساب
-  buildWhatsappLink();
-}
+  // عرض نص الطلب
+  document.getElementById('orderTextPreview').textContent=buildOrderText();
 
-function buildOrderText(){
-  let t=`🍰 *طلب جديد – Moni Cook*\n\n`;
-  t+=`▪️ النوع: ${selections.type}\n`;
-  t+=`▪️ الحجم: ${selections.size}\n`;
-  t+=`▪️ الحشوة: ${selections.fillings.join(', ')}\n`;
-  if(selections.layers.length>1){
-    t+=`▪️ الطبقات:\n`;
-    selections.layers.forEach((l,i)=>{t+=`   ${i+1}. ${l}\n`;});
-  }
-  if(selections.notes.trim()) t+=`▪️ ملاحظات: ${selections.notes}\n`;
-  return t;
-}
-
-function buildWhatsappLink(){
+  // بناء رابط واتساب
   const msg=encodeURIComponent(buildOrderText());
   document.getElementById('whatsappBtn').href=`https://wa.me/qr/FMOJITEW2ZM7O1?text=${msg}`;
 }
@@ -1212,7 +1125,8 @@ function buildWhatsappLink(){
 function copyOrder(){
   const btn=document.getElementById('copyOrderBtn');
   const text=buildOrderText();
-  navigator.clipboard.writeText(text).then(()=>{
+
+  const doCopy=()=>{
     btn.classList.add('copied');
     document.getElementById('copyBadge').textContent='تم ✓';
     document.getElementById('copyFeedback').classList.add('show');
@@ -1220,41 +1134,57 @@ function copyOrder(){
       btn.classList.remove('copied');
       document.getElementById('copyBadge').textContent='نسخ';
       document.getElementById('copyFeedback').classList.remove('show');
-    },2500);
-  }).catch(()=>{
-    // fallback
-    const ta=document.createElement('textarea');
-    ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
-    btn.classList.add('copied');
-    setTimeout(()=>btn.classList.remove('copied'),2500);
-  });
+    },3000);
+  };
+
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(doCopy).catch(()=>{
+      fallbackCopy(text);doCopy();
+    });
+  } else {
+    fallbackCopy(text);doCopy();
+  }
+}
+
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus();ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
 }
 
 /* ═══════ RESET ═══════ */
 function resetConfig(){
   selections={type:'',size:'',fillings:[],layers:[],notes:''};
+  activeRoots={vanilla:false,choco:false};
+
   document.querySelectorAll('.option-card,.size-card').forEach(c=>c.classList.remove('selected'));
   document.querySelectorAll('.filling-chip').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.tree-root-card').forEach(c=>c.classList.remove('active'));
+  document.getElementById('branchVanilla').style.display='none';
+  document.getElementById('branchChoco').style.display='none';
   document.getElementById('notesArea').value='';
   document.getElementById('charNum').textContent='0';
   document.getElementById('fillingCountBadge').textContent='0';
   document.getElementById('fillingCountBadge').classList.add('empty');
   document.getElementById('fillingPreview').classList.remove('visible');
   document.getElementById('layerBuilder').style.display='none';
-  // reset steps
+  document.getElementById('layersList').innerHTML='';
+  document.getElementById('orderTextPreview').textContent='';
+  document.getElementById('copyFeedback').classList.remove('show');
+
+  const labels=['1','2','3','4','5'];
   for(let i=1;i<=5;i++){
     const c=document.getElementById('stepCircle'+i);
     c.classList.remove('done','active');
-    c.textContent=['١','٢','٣','٤','٥'][i-1];
+    c.textContent=labels[i-1];
     if(i<5)document.getElementById('stepConn'+i).classList.remove('done');
     document.getElementById('stepBtn'+i).classList.remove('active-step');
   }
   showPanel(1);
-}
-
-/* ═══════ CHAR COUNT ═══════ */
-function updateCharCount(){
-  document.getElementById('charNum').textContent=document.getElementById('notesArea').value.length;
 }
 </script>
 </body>
