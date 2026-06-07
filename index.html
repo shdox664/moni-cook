@@ -260,7 +260,71 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdro
   display:block;margin-bottom:6px;
 }
 
-/* ─── القسم الجديد: طبقات الحشوة المتعددة ─── */
+/* ─── شجرة الحشوات ─── */
+.tree-root-label{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.tree-root-label::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
+.tree-root-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+.tree-root-card{
+  border:0.5px solid var(--border-gold);border-radius:6px;
+  padding:18px 14px;cursor:pointer;
+  background:var(--option-bg);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  position:relative;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+  -webkit-tap-highlight-color:transparent;
+}
+.tree-root-card:hover{border-color:var(--border-gold2);background:var(--option-hover);}
+.tree-root-card.active{
+  border-color:var(--gold);background:var(--option-selected-bg);
+  box-shadow:inset 0 0 0 0.5px var(--gold),0 4px 20px rgba(196,150,90,0.15);
+}
+.tree-root-icon{font-size:28px;display:block;}
+.tree-root-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text-primary);transition:color 0.3s;}
+.tree-root-card.active .tree-root-name{color:var(--gold-light);}
+.tree-root-check{
+  position:absolute;top:8px;left:10px;
+  width:18px;height:18px;border:0.5px solid var(--border-gold2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:transparent;background:transparent;
+  transition:all 0.25s ease;
+}
+.tree-root-card.active .tree-root-check{
+  background:var(--gold);border-color:var(--gold);color:#0A0806;
+}
+.tree-branch{
+  margin-top:6px;
+  border-right:2px solid var(--border-gold2);
+  padding-right:14px;margin-right:4px;
+  animation:panelFadeIn 0.4s ease;
+}
+.tree-branch-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:8px;margin-top:14px;
+}
+.tree-branch-line{flex:1;height:0.5px;background:var(--border-gold);}
+.tree-branch-title{
+  font-family:'Cormorant Garamond',serif;font-size:15px;
+  color:var(--text-muted);white-space:nowrap;letter-spacing:0.5px;
+}
+.tree-branch-note{
+  font-size:10px;color:var(--rose);letter-spacing:1px;
+  margin-bottom:12px;display:flex;align-items:center;gap:6px;
+}
+.tree-branch-note::before{content:'✦';font-size:8px;}
+.choco-type-label{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:8px;margin-top:4px;
+  display:flex;align-items:center;gap:8px;
+}
+.choco-type-label::before{content:'└';font-family:monospace;color:var(--border-gold2);}
+
+/* chip variants */
+.filling-chip--white.selected{border-color:#E8E8E8;box-shadow:0 2px 12px rgba(232,232,232,0.15);}
+.filling-chip--ruby.selected{border-color:#E8A87C;box-shadow:0 2px 12px rgba(232,168,124,0.2);}
+.filling-chip--nuts.selected{border-color:var(--gold);box-shadow:0 2px 12px rgba(196,150,90,0.2);}
+
+
 .layer-builder{margin-top:20px;}
 .layer-builder-title{
   font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);
@@ -651,60 +715,94 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
       </div>
     </div>
 
-    <!-- PANEL 3: FILLING – MULTI-SELECT -->
+    <!-- PANEL 3: FILLING – TREE MULTI-SELECT -->
     <div class="config-panel" id="panel3">
       <div class="panel-title">اختر الحشوة</div>
-      <div class="panel-subtitle">يمكنك اختيار أكثر من حشوة وترتيب الطبقات</div>
+      <div class="panel-subtitle">اختر الأساس ثم خصّص · يمكن تعدد الاختيار</div>
 
       <!-- شريط العدد -->
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
         <span class="filling-count-badge empty" id="fillingCountBadge">0</span>
         <span style="font-size:11px;color:var(--text-faint);letter-spacing:1px;">حشوة محددة</span>
       </div>
 
-      <!-- تنبيه التعدد -->
-      <div class="filling-multi-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
-        اختر حشوة واحدة أو اجمع عدة حشوات في طبقات
+      <!-- ══════════ الاختيار الرئيسي ══════════ -->
+      <div class="tree-root-label">اختر الأساس</div>
+      <div class="tree-root-row">
+
+        <!-- بطاقة فانيلا -->
+        <div class="tree-root-card" id="rootVanilla" onclick="toggleRoot('vanilla')">
+          <span class="tree-root-icon">🤍</span>
+          <span class="tree-root-name">فانيلا</span>
+          <span class="tree-root-check" id="checkVanilla">✓</span>
+        </div>
+
+        <!-- بطاقة شوكولاتة -->
+        <div class="tree-root-card" id="rootChoco" onclick="toggleRoot('choco')">
+          <span class="tree-root-icon">🍫</span>
+          <span class="tree-root-name">شوكولاتة</span>
+          <span class="tree-root-check" id="checkChoco">✓</span>
+        </div>
+
       </div>
 
-      <div class="filling-section-title">اختر من القائمة</div>
-      <div class="filling-grid" id="fillingGrid">
-        <div class="filling-chip" onclick="toggleFilling(this,'فانيليا كريمي')">
-          <span class="chip-check">✓</span> فانيليا كريمي
+      <!-- ══════════ فروع الفانيلا ══════════ -->
+      <div class="tree-branch" id="branchVanilla" style="display:none;">
+        <div class="tree-branch-header">
+          <span class="tree-branch-line"></span>
+          <span class="tree-branch-title">🤍 فانيلا · نوع الفاكهة</span>
+          <span class="tree-branch-line"></span>
         </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'شوكولاتة غاناش')">
-          <span class="chip-check">✓</span> شوكولاتة غاناش
+        <div class="tree-branch-note">يمكن اختيار أكثر من فاكهة</div>
+        <div class="filling-grid">
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + فراولة')"><span class="chip-check">✓</span>🍓 فراولة</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + توت')"><span class="chip-check">✓</span>🫐 توت</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + مانجو')"><span class="chip-check">✓</span>🥭 مانجو</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + ليمون')"><span class="chip-check">✓</span>🍋 ليمون</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + خوخ')"><span class="chip-check">✓</span>🍑 خوخ</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + تفاح مسكر')"><span class="chip-check">✓</span>🍎 تفاح مسكر</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + مشمش')"><span class="chip-check">✓</span>🟠 مشمش</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + موز')"><span class="chip-check">✓</span>🍌 موز</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + كيوي')"><span class="chip-check">✓</span>🥝 كيوي</div>
+          <div class="filling-chip" onclick="toggleFilling(this,'فانيلا + أناناس')"><span class="chip-check">✓</span>🍍 أناناس</div>
         </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'نوتيلا')">
-          <span class="chip-check">✓</span> نوتيلا
+      </div>
+
+      <!-- ══════════ فروع الشوكولاتة ══════════ -->
+      <div class="tree-branch" id="branchChoco" style="display:none;">
+        <div class="tree-branch-header">
+          <span class="tree-branch-line"></span>
+          <span class="tree-branch-title">🍫 شوكولاتة · النوع</span>
+          <span class="tree-branch-line"></span>
         </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'فراولة')">
-          <span class="chip-check">✓</span> فراولة
+        <div class="tree-branch-note">يمكن اختيار أكثر من نوع</div>
+
+        <!-- شوكولاتة بيضاء -->
+        <div class="choco-type-label">⬜ شوكولاتة بيضاء</div>
+        <div class="filling-grid" style="margin-bottom:14px;">
+          <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة بيضاء كريمي')"><span class="chip-check">✓</span>كريمي</div>
+          <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة بيضاء + فراولة')"><span class="chip-check">✓</span>+ فراولة</div>
+          <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة بيضاء + ليمون')"><span class="chip-check">✓</span>+ ليمون</div>
+          <div class="filling-chip filling-chip--white" onclick="toggleFilling(this,'شوكولاتة بيضاء + مانجو')"><span class="chip-check">✓</span>+ مانجو</div>
         </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'ليمون')">
-          <span class="chip-check">✓</span> ليمون
+
+        <!-- شوكولاتة مرجان -->
+        <div class="choco-type-label" style="color:#E8A87C;">🟠 شوكولاتة مرجان (Ruby)</div>
+        <div class="filling-grid" style="margin-bottom:14px;">
+          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة مرجان كريمي')"><span class="chip-check">✓</span>كريمي</div>
+          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة مرجان + توت')"><span class="chip-check">✓</span>+ توت</div>
+          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة مرجان + فراولة')"><span class="chip-check">✓</span>+ فراولة</div>
+          <div class="filling-chip filling-chip--ruby" onclick="toggleFilling(this,'شوكولاتة مرجان + مشمش')"><span class="chip-check">✓</span>+ مشمش</div>
         </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'كراميل')">
-          <span class="chip-check">✓</span> كراميل
-        </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'لوتس')">
-          <span class="chip-check">✓</span> لوتس
-        </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'تفاح مسكر')">
-          <span class="chip-check">✓</span> تفاح مسكر
-        </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'مشمش')">
-          <span class="chip-check">✓</span> مشمش
-        </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'موز وشوكولاتة')">
-          <span class="chip-check">✓</span> موز وشوكولاتة
-        </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'توت أحمر')">
-          <span class="chip-check">✓</span> توت أحمر
-        </div>
-        <div class="filling-chip" onclick="toggleFilling(this,'فستق')">
-          <span class="chip-check">✓</span> فستق
+
+        <!-- مكسرات -->
+        <div class="choco-type-label" style="color:#C4965A;">🥜 مكسرات</div>
+        <div class="filling-grid">
+          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + لوز')"><span class="chip-check">✓</span>لوز</div>
+          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + بيستاش')"><span class="chip-check">✓</span>بيستاش</div>
+          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + كاجو')"><span class="chip-check">✓</span>كاجو</div>
+          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + لوز وبيستاش')"><span class="chip-check">✓</span>لوز + بيستاش</div>
+          <div class="filling-chip filling-chip--nuts" onclick="toggleFilling(this,'شوكولاتة + مكسرات متنوعة')"><span class="chip-check">✓</span>مكسرات متنوعة</div>
         </div>
       </div>
 
@@ -917,7 +1015,36 @@ function selectOption(el,field,val){
   document.getElementById('hint'+field.charAt(0).toUpperCase()+field.slice(1)).classList.remove('show');
 }
 
-/* ═══════ FILLING MULTI-SELECT ═══════ */
+/* ═══════ FILLING TREE ═══════ */
+let activeRoots={vanilla:false,choco:false};
+
+function toggleRoot(root){
+  activeRoots[root]=!activeRoots[root];
+  const card=document.getElementById('root'+root.charAt(0).toUpperCase()+root.slice(1));
+  const branch=document.getElementById('branch'+root.charAt(0).toUpperCase()+root.slice(1));
+  card.classList.toggle('active',activeRoots[root]);
+  branch.style.display=activeRoots[root]?'block':'none';
+
+  // إذا أُلغي الجذر أزل كل حشواته
+  if(!activeRoots[root]){
+    const prefix=root==='vanilla'?'فانيلا':'شوكولاتة';
+    // أزل من selections + أزل selected من الـ chips
+    selections.fillings=selections.fillings.filter(f=>{
+      if(f.startsWith(prefix)){
+        branch.querySelectorAll('.filling-chip').forEach(c=>{
+          if(c.onclick&&c.onclick.toString().includes(f))c.classList.remove('selected');
+        });
+        return false;
+      }
+      return true;
+    });
+    // أزل بـ data attr بدلاً من toString
+    branch.querySelectorAll('.filling-chip.selected').forEach(c=>c.classList.remove('selected'));
+    selections.fillings=selections.fillings.filter(f=>!f.startsWith(prefix));
+    updateFillingUI();
+  }
+}
+
 function toggleFilling(chip,name){
   const idx=selections.fillings.indexOf(name);
   if(idx===-1){
@@ -926,7 +1053,6 @@ function toggleFilling(chip,name){
   } else {
     selections.fillings.splice(idx,1);
     chip.classList.remove('selected');
-    // إزالة الطبقة المقابلة
     selections.layers=selections.layers.filter(l=>l!==name);
     renderLayers();
   }
@@ -951,9 +1077,7 @@ function updateFillingUI(){
   const layerBuilder=document.getElementById('layerBuilder');
   if(count>1){
     layerBuilder.style.display='block';
-    // تحديث الطبقات: أضف حشوات جديدة، أزل المحذوفة
     selections.layers=selections.fillings.filter(f=>selections.layers.includes(f));
-    // أضف الجديدة في النهاية
     selections.fillings.forEach(f=>{if(!selections.layers.includes(f))selections.layers.push(f);});
     renderLayers();
   } else {
