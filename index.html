@@ -6,6 +6,9 @@
 <title>Moni Cook – حلويات فاخرة</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Tajawal:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
+/* -----------------------------------------------------------
+   الأنماط الخاصة بك (تم إكمال السطر الأخير المقطوع)
+----------------------------------------------------------- */
 :root {
   --gold: #C4965A;
   --gold-light: #E8C97A;
@@ -44,129 +47,9 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Tajawal',sans-serif;background:var(--bg-primary);color:var(--text-primary);max-width:430px;margin:0 auto;overflow-x:hidden;cursor:none;transition:background var(--trans-time) ease,color var(--trans-time) ease;}
+body{font-family:'Tajawal',sans-serif;background:var(--bg-primary);color:var(--text-primary);max-width:430px;margin:0 auto;overflow-x:hidden;transition:background var(--trans-time) ease,color var(--trans-time) ease;}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:var(--grain-opacity);transition:opacity var(--trans-time) ease;}
-.cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,background 0.3s,transform 0.1s;}
-.cursor-ring{width:36px;height:36px;border:1px solid rgba(196,150,90,0.5);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:border-color 0.3s;}
-.cursor.hover{width:20px;height:20px;background:rgba(196,150,90,0.4);}
-.cursor-ring.hover{border-color:var(--gold);transform:translate(-50%,-50%) scale(1.6);transition:transform 0.3s,border-color 0.3s;}
-.theme-toggle{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:200;background:var(--bg-card);border:0.5px solid var(--border-gold2);border-radius:50px;padding:8px 18px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all 0.4s ease;box-shadow:0 4px 24px rgba(0,0,0,0.25);}
-.theme-toggle:hover{border-color:var(--gold);box-shadow:0 4px 32px rgba(196,150,90,0.25);}
-.toggle-icon{font-size:15px;transition:transform 0.5s ease;}
-.theme-toggle:hover .toggle-icon{transform:rotate(20deg);}
-.toggle-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Tajawal',sans-serif;font-weight:400;}
-nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);}
-nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border-gold);padding:14px 28px;}
-.logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--text-primary);letter-spacing:3px;text-transform:uppercase;transition:color var(--trans-time) ease;}
-.logo em{color:var(--gold);font-style:italic;font-weight:300;}
-.nav-right{display:flex;align-items:center;gap:12px;}
-.menu-btn{background:none;border:0.5px solid var(--border-gold2);border-radius:4px;padding:9px 14px;cursor:pointer;color:var(--text-primary);font-size:13px;letter-spacing:2px;font-family:'Tajawal',sans-serif;transition:all 0.3s ease;}
-.menu-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(196,150,90,0.06);}
-.hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
-.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=90&w=1200&auto=format&fit=crop');background-size:cover;background-position:center;transform:scale(1.08);transition:transform 7s cubic-bezier(0.4,0,0.2,1);will-change:transform;}
-.hero-bg.loaded{transform:scale(1);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(170deg,var(--hero-overlay1) 0%,var(--hero-overlay2) 30%,var(--hero-overlay3) 65%,var(--hero-overlay4) 100%);transition:background var(--trans-time) ease;}
-.hero-particles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
-.particle{position:absolute;width:3px;height:3px;background:rgba(196,150,90,0.5);border-radius:50%;animation:floatUp linear infinite;}
-@keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:0;}10%{opacity:1;}90%{opacity:0.6;}100%{transform:translateY(-100vh) scale(0.3);opacity:0;}}
-.hero-side-line{position:absolute;top:50%;right:24px;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;z-index:5;animation:fadeInRight 1.5s 1.2s ease forwards;opacity:0;}
-@keyframes fadeInRight{from{opacity:0;transform:translateY(-50%) translateX(10px);}to{opacity:1;transform:translateY(-50%) translateX(0);}}
-.side-text{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);writing-mode:vertical-rl;text-orientation:mixed;opacity:0.7;}
-.side-line{width:0.5px;height:0;background:linear-gradient(to bottom,var(--gold),transparent);animation:growLine 1.4s 1.5s cubic-bezier(0.4,0,0.2,1) forwards;}
-@keyframes growLine{to{height:60px;}}
-.scroll-indicator{position:absolute;bottom:28px;left:28px;z-index:5;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeIn 1s 2s ease forwards;}
-@keyframes fadeIn{to{opacity:0.55;}}
-.scroll-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;animation:pulseDot 2s ease infinite;}
-@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.3;transform:scale(0.5);}}
-.scroll-text{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--text-primary);}
-.hero-content{position:relative;z-index:5;padding:0 28px 72px;}
-.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;opacity:0;animation:slideUp 0.9s 0.4s cubic-bezier(0.4,0,0.2,1) forwards;}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.eyebrow-line{width:0;height:0.5px;background:var(--gold);animation:growEyebrow 0.8s 0.6s ease forwards;}
-@keyframes growEyebrow{to{width:40px;}}
-.eyebrow-text{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:400;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:58px;line-height:1.05;color:#FAF6F0;margin-bottom:20px;font-weight:300;letter-spacing:-0.5px;}
-.hero-title strong{font-weight:600;display:block;}
-.hero-title em{font-style:italic;color:var(--gold-light);}
-.hero-line{overflow:hidden;display:block;}
-.hero-line-inner{display:block;animation:lineReveal 0.9s cubic-bezier(0.4,0,0.2,1) forwards;transform:translateY(110%);}
-.hero-line:nth-child(1) .hero-line-inner{animation-delay:0.5s;}
-.hero-line:nth-child(2) .hero-line-inner{animation-delay:0.68s;}
-.hero-line:nth-child(3) .hero-line-inner{animation-delay:0.86s;}
-@keyframes lineReveal{to{transform:translateY(0);}}
-.hero-desc{font-size:13px;color:rgba(250,246,240,0.65);line-height:1.9;margin-bottom:36px;font-weight:300;max-width:300px;opacity:0;animation:slideUp 0.9s 1.1s ease forwards;}
-.hero-actions{display:flex;align-items:center;gap:20px;opacity:0;animation:slideUp 0.9s 1.3s ease forwards;}
-.hero-progress{position:absolute;bottom:0;left:0;right:0;height:2px;z-index:6;background:rgba(196,150,90,0.15);}
-.hero-progress-fill{height:100%;width:0;background:linear-gradient(to left,transparent,var(--gold));animation:progressFill 6s 0.5s ease forwards;}
-@keyframes progressFill{to{width:100%;}}
-.btn-gold{background:var(--gold);color:#0A0806;padding:14px 30px;border-radius:2px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);display:inline-block;position:relative;overflow:hidden;}
-.btn-gold::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);transform:translateX(-105%) skewX(-15deg);transition:transform 0.5s ease;}
-.btn-gold:hover::after{transform:translateX(105%) skewX(-15deg);}
-.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,150,90,0.4);}
-.btn-ghost{color:rgba(250,246,240,0.7);font-size:12px;letter-spacing:1.5px;text-decoration:none;display:flex;align-items:center;gap:8px;transition:all 0.3s ease;font-family:'Tajawal',sans-serif;}
-.btn-ghost::after{content:'←';font-size:14px;transition:transform 0.3s ease;}
-.btn-ghost:hover{color:var(--gold);}
-.btn-ghost:hover::after{transform:translateX(-5px);}
-.marquee-wrap{background:var(--marquee-bg);padding:13px 0;overflow:hidden;display:flex;transition:background var(--trans-time) ease;}
-.marquee-track{display:flex;white-space:nowrap;animation:marquee 22s linear infinite;}
-.marquee-track:hover{animation-play-state:paused;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.marquee-item{display:inline-flex;align-items:center;gap:18px;padding:0 18px;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--marquee-text);font-weight:500;transition:color var(--trans-time) ease;}
-.marquee-diamond{font-size:7px;opacity:0.55;}
-.about{padding:80px 0 0;background:var(--bg-secondary);position:relative;overflow:hidden;transition:background var(--trans-time) ease;}
-.about::before{content:'Moni';font-family:'Cormorant Garamond',serif;font-size:160px;font-weight:600;position:absolute;top:-20px;left:-20px;color:var(--about-ghost);line-height:1;pointer-events:none;letter-spacing:-5px;transition:color var(--trans-time) ease;}
-.about-inner{padding:0 28px;}
-.label-chip{display:inline-flex;align-items:center;gap:10px;border:0.5px solid var(--border-gold2);padding:6px 14px;border-radius:100px;margin-bottom:28px;transition:border-color var(--trans-time) ease;}
-.label-chip span{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:400;}
-.about-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;line-height:1.2;color:var(--text-primary);margin-bottom:24px;transition:color var(--trans-time) ease;}
-.about-title em{font-style:italic;color:var(--gold-light);}
-.about-body{font-size:14px;color:var(--text-muted);line-height:2;font-weight:300;transition:color var(--trans-time) ease;}
-.about-img-wrap{margin-top:48px;position:relative;height:320px;overflow:hidden;}
-.about-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.9s cubic-bezier(0.4,0,0.2,1),filter var(--trans-time) ease;filter:var(--img-filter);}
-.about-img-wrap:hover img{transform:scale(1.05);}
-.about-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--card-overlay1) 0%,transparent 55%);transition:background var(--trans-time) ease;}
-.about-img-caption{position:absolute;bottom:20px;right:20px;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-light);letter-spacing:1px;}
-.about-img-wrap::after{content:'';position:absolute;inset:0;background:var(--bg-secondary);transform:scaleX(1);transform-origin:right;transition:transform 1s cubic-bezier(0.4,0,0.2,1);}
-.about-img-wrap.img-revealed::after{transform:scaleX(0);}
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);border-top:0.5px solid var(--border-gold);border-bottom:0.5px solid var(--border-gold);transition:border-color var(--trans-time) ease;}
-.stat-item{padding:28px 20px;text-align:center;border-left:0.5px solid var(--border-gold);transition:border-color var(--trans-time) ease;}
-.stat-item:last-child{border-left:none;}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;}
-.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--stat-label);font-weight:300;transition:color var(--trans-time) ease;}
-.menu-section{padding:80px 0;background:var(--bg-card);position:relative;transition:background var(--trans-time) ease;}
-.section-header{padding:0 28px;margin-bottom:48px;}
-.menu-cards{padding:0 20px;display:flex;flex-direction:column;gap:3px;}
-.menu-card{position:relative;overflow:hidden;cursor:pointer;height:280px;clip-path:inset(0 0 0 0);transition:clip-path 0.5s ease;}
-.menu-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.4,0,0.2,1),filter 0.5s ease;filter:var(--img-filter);}
-.menu-card:hover img{transform:scale(1.09);filter:var(--img-hover);}
-.menu-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--card-overlay1) 0%,var(--card-overlay2) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:background var(--trans-time) ease;}
-.card-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:0;transform:translateY(10px);transition:all 0.45s cubic-bezier(0.4,0,0.2,1) 0.05s;}
-.menu-card:hover .card-tag{opacity:1;transform:translateY(0);}
-.card-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#FAF6F0;margin-bottom:8px;line-height:1.15;transform:translateY(4px);transition:transform 0.4s ease;}
-.menu-card:hover .card-name{transform:translateY(0);}
-.card-desc{font-size:12px;color:rgba(250,246,240,0.55);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.4,0,0.2,1),opacity 0.4s ease 0.1s;opacity:0;}
-.menu-card:hover .card-desc{max-height:60px;opacity:1;}
-.card-price{margin-top:14px;display:flex;align-items:center;justify-content:space-between;transform:translateY(4px);transition:transform 0.4s ease 0.05s;}
-.menu-card:hover .card-price{transform:translateY(0);}
-.price-val{font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:400;}
-.price-icon{width:32px;height:32px;border:0.5px solid rgba(196,150,90,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:14px;transition:all 0.35s ease;}
-.menu-card:hover .price-icon{background:var(--gold);color:#0A0806;border-color:var(--gold);transform:rotate(-45deg);}
-.specialties{padding:80px 0;background:var(--bg-primary);position:relative;overflow:hidden;transition:background var(--trans-time) ease;}
-.specialties::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--spec-glow) 0%,transparent 70%);pointer-events:none;transition:background var(--trans-time) ease;animation:glowPulse 4s ease infinite;}
-@keyframes glowPulse{0%,100%{opacity:0.7;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12);}}
-.spec-header{padding:0 28px;margin-bottom:48px;}
-.spec-list{padding:0 28px;}
-.spec-item{display:flex;align-items:center;gap:20px;padding:22px 0;border-bottom:0.5px solid var(--border-gold);cursor:pointer;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}
-.spec-item::after{content:'';position:absolute;right:0;top:0;bottom:0;width:0;background:linear-gradient(to left,rgba(196,150,90,0.08),transparent);transition:width 0.4s ease;}
-.spec-item:hover::after{width:100%;}
-.spec-item:last-child{border-bottom:none;}
-.spec-item:hover{padding-right:14px;}
-.spec-num{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:300;color:rgba(196,150,90,0.5);min-width:26px;letter-spacing:1px;transition:color 0.3s ease;}
-.spec-item:hover .spec-num{color:var(--gold);}
-.spec-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text-primary);flex:1;transition:color 0.3s ease;}
-.spec-item:hover .spec-name{color:var(--gold-light);}
-.spec-arr{color:rgba(196,150,90,0.35);font-size:18px;transition:all 0.35s ease;position:relative;z-index:1;}
-.spec-item:hover .spec-arr{color:var(--gold);transform:translateX(-8px);}
+
 .configurator-section{background:var(--configurator-bg);padding:80px 0 0;position:relative;overflow:hidden;transition:background var(--trans-time) ease;}
 .configurator-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to left,transparent,var(--gold),transparent);}
 .config-header{padding:0 28px;margin-bottom:48px;}
@@ -185,850 +68,250 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdro
 @keyframes panelFadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .panel-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--text-primary);margin-bottom:6px;transition:color var(--trans-time) ease;}
 .panel-subtitle{font-size:11px;color:var(--text-faint);letter-spacing:1.5px;margin-bottom:28px;transition:color var(--trans-time) ease;}
+
 .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
 .option-card{border:0.5px solid var(--border-gold);border-radius:4px;padding:16px 14px;cursor:pointer;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);background:var(--option-bg);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
-.option-card::before{content:'';position:absolute;inset:0;background:rgba(196,150,90,0.04);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s ease;}
-.option-card:hover::before{transform:scaleY(1);}
 .option-card:hover{border-color:var(--border-gold2);background:var(--option-hover);}
 .option-card.selected{border-color:var(--gold);background:var(--option-selected-bg);box-shadow:inset 0 0 0 0.5px var(--gold),0 4px 20px rgba(196,150,90,0.15);}
-.option-card.selected::after{content:'✓';position:absolute;top:8px;left:10px;font-size:10px;color:var(--gold);font-family:'Cormorant Garamond',serif;}
-.option-emoji{font-size:24px;margin-bottom:10px;display:block;}
-.option-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--text-primary);margin-bottom:4px;transition:color 0.3s ease;}
-.option-card.selected .option-name{color:var(--gold-light);}
-.option-desc{font-size:10px;color:var(--text-faint);letter-spacing:0.5px;line-height:1.5;transition:color 0.3s ease;}
-.size-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px;}
-.size-card{border:0.5px solid var(--border-gold);border-radius:4px;padding:14px 6px;cursor:pointer;text-align:center;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);background:var(--option-bg);-webkit-tap-highlight-color:transparent;}
-.size-card:hover{border-color:var(--border-gold2);background:var(--option-hover);}
-.size-card.selected{border-color:var(--gold);background:var(--option-selected-bg);box-shadow:inset 0 0 0 0.5px var(--gold),0 4px 20px rgba(196,150,90,0.15);}
-.size-cm{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--text-primary);display:block;margin-bottom:3px;transition:color 0.3s ease;}
-.size-card.selected .size-cm{color:var(--gold);}
-.size-unit{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);}
-.size-note{font-size:9px;color:var(--text-faint);margin-top:2px;}
+.option-card.selected::after{content:'✓';position:absolute;top:8px;left:10px;font-size:10px;color:var(--gold);}
+.option-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--text-primary);margin-bottom:4px;}
+
 .filling-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
 .filling-chip{border:0.5px solid var(--border-gold);border-radius:100px;padding:8px 16px;cursor:pointer;font-size:12px;color:var(--text-muted);font-family:'Tajawal',sans-serif;transition:all 0.3s ease;background:var(--option-bg);display:flex;align-items:center;gap:6px;-webkit-tap-highlight-color:transparent;}
 .filling-chip:hover{border-color:var(--border-gold2);color:var(--text-primary);}
 .filling-chip.selected{border-color:var(--gold);background:var(--option-selected-bg);color:var(--gold-light);box-shadow:0 2px 12px rgba(196,150,90,0.15);}
-.notes-area{width:100%;background:var(--option-bg);border:0.5px solid var(--border-gold);border-radius:4px;padding:16px;color:var(--text-primary);font-family:'Tajawal',sans-serif;font-size:13px;line-height:1.8;resize:none;height:130px;outline:none;transition:all 0.3s ease;direction:rtl;}
-.notes-area:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,150,90,0.08);}
-.notes-area::placeholder{color:var(--text-faint);}
-.char-count{font-size:9px;color:var(--text-faint);text-align:left;margin-top:6px;}
+
 .config-nav{display:flex;justify-content:space-between;align-items:center;margin-top:32px;}
-.btn-config-next{background:var(--gold);color:#0A0806;padding:13px 28px;border-radius:2px;border:none;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;position:relative;overflow:hidden;}
+.btn-config-next{background:var(--gold);color:#0A0806;padding:13px 28px;border-radius:2px;border:none;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;}
 .btn-config-next:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,150,90,0.35);}
-.btn-config-next:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-config-next:disabled{opacity:0.35;cursor:not-allowed;}
 .btn-config-prev{background:none;color:var(--text-muted);padding:13px 20px;border-radius:2px;border:0.5px solid var(--border-gold);font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;}
-.btn-config-prev:hover{border-color:var(--gold);color:var(--gold);}
+
 .order-summary{background:var(--summary-bg);border:0.5px solid var(--border-gold);border-radius:6px;padding:24px;margin-bottom:24px;transition:all var(--trans-time) ease;}
-.summary-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--gold-light);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
-.summary-title::after{content:'';flex:1;height:0.5px;background:var(--border-gold);}
+.summary-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--gold-light);margin-bottom:20px;}
 .summary-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid var(--border-gold);gap:16px;}
 .summary-row:last-child{border-bottom:none;}
-.summary-key{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);min-width:60px;padding-top:2px;}
+.summary-key{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-faint);min-width:60px;}
 .summary-val{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--text-primary);text-align:left;flex:1;}
 
-/* ── زر واتساب ── */
 .btn-whatsapp{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:#25D366;color:#fff;padding:16px;border-radius:2px;border:none;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;text-decoration:none;margin-bottom:10px;}
 .btn-whatsapp:hover{background:#1ebe57;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3);}
-
-/* ── زر إنستغرام ── */
 .btn-insta-order{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:transparent;border:0.5px solid var(--border-gold2);color:var(--gold);padding:14px;border-radius:2px;font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.35s ease;text-decoration:none;position:relative;overflow:hidden;margin-bottom:10px;}
-.btn-insta-order::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 0.4s ease;z-index:-1;}
-.btn-insta-order:hover::before{transform:scaleX(1);transform-origin:left;}
-.btn-insta-order:hover{color:#0A0806;border-color:var(--gold);}
+.btn-insta-order:hover{color:#0A0806;background:var(--gold);}
 
-/* ── زر نسخ الطلب العلوي ── */
-.btn-copy-order{
-  display:flex;align-items:center;justify-content:space-between;
-  width:100%;background:var(--option-bg);
-  border:0.5px solid var(--border-gold2);border-radius:4px;
-  padding:13px 18px;margin-bottom:16px;
-  cursor:pointer;transition:all 0.3s ease;
-  font-family:'Tajawal',sans-serif;
-}
-.btn-copy-order:hover{border-color:var(--gold);background:var(--option-hover);}
-.btn-copy-order:active{transform:scale(0.98);}
-.copy-order-label{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-.copy-order-icon{font-size:16px;}
-.copy-order-badge{
-  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--text-faint);border:0.5px solid var(--border-gold);
-  border-radius:100px;padding:4px 10px;transition:all 0.3s ease;
-  font-family:'Tajawal',sans-serif;
-}
-.btn-copy-order.copied .copy-order-badge{
-  color:var(--gold);border-color:var(--gold);
-  background:var(--option-selected-bg);
-}
-.btn-copy-order.copied .copy-order-label{color:var(--gold-light);}
-
-/* ── feedback النسخ ── */
-.copy-feedback{display:none;text-align:center;font-size:11px;color:var(--gold);letter-spacing:1.5px;margin-top:8px;padding:10px;border:0.5px solid var(--border-gold);border-radius:4px;background:var(--option-selected-bg);animation:panelFadeIn 0.3s ease;}
-.copy-feedback.show{display:block;}
-
-.reset-btn{background:none;border:none;cursor:pointer;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);font-family:'Tajawal',sans-serif;display:block;margin:16px auto 0;transition:color 0.3s ease;padding:8px;}
-.reset-btn:hover{color:var(--rose);}
-.hint-text{font-size:10px;color:var(--rose);letter-spacing:1px;margin-top:6px;display:none;}
-.hint-text.show{display:block;}
-.order-section{background:var(--order-bg);position:relative;overflow:hidden;padding:110px 28px;text-align:center;transition:background var(--trans-time) ease;}
-.order-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:0.5px;height:60px;background:linear-gradient(to bottom,transparent,var(--gold));animation:lineGrow 2s ease infinite alternate;}
-@keyframes lineGrow{from{height:40px;opacity:0.4;}to{height:80px;opacity:1;}}
-.order-section::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0.5px;height:60px;background:linear-gradient(to top,transparent,var(--gold));animation:lineGrow 2s 1s ease infinite alternate;}
-.order-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:16px;}
-.order-eyebrow::before,.order-eyebrow::after{content:'';width:0;height:0.5px;background:var(--gold);animation:eyebrowGrow 1.5s 0.5s ease forwards;}
-@keyframes eyebrowGrow{to{width:30px;}}
-.order-title{font-family:'Cormorant Garamond',serif;font-size:62px;font-weight:200;line-height:1;color:var(--text-primary);margin-bottom:8px;transition:color var(--trans-time) ease;}
-.order-title em{font-style:italic;color:var(--gold);display:block;font-size:70px;}
-.order-sub{font-size:12px;color:var(--text-faint);letter-spacing:2px;margin:20px 0 44px;font-weight:300;transition:color var(--trans-time) ease;}
-.btn-insta{display:inline-flex;align-items:center;gap:12px;background:transparent;border:0.5px solid var(--border-gold2);color:var(--gold);padding:16px 34px;border-radius:2px;font-family:'Tajawal',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}
-.btn-insta::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);z-index:-1;}
-.btn-insta:hover::before{transform:scaleX(1);transform-origin:left;}
-.btn-insta:hover{color:#0A0806;border-color:var(--gold);}
-.contact-section{padding:80px 0;background:var(--contact-bg);transition:background var(--trans-time) ease;}
-.contact-inner{padding:0 28px;}
-.contact-list{margin-top:48px;}
-.contact-item{display:flex;align-items:flex-start;gap:20px;padding:28px 0;border-bottom:0.5px solid var(--border-gold);position:relative;transition:all 0.3s ease;}
-.contact-item:hover{padding-right:10px;}
-.contact-item:last-child{border-bottom:none;}
-.ci-number{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:200;color:var(--border-gold2);line-height:1;min-width:48px;position:relative;top:-8px;transition:color 0.4s ease;}
-.contact-item:hover .ci-number{color:var(--gold);}
-.ci-content{flex:1;}
-.ci-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:400;}
-.ci-value{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--text-primary);transition:color var(--trans-time) ease;}
-footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px solid var(--border-gold);transition:background var(--trans-time) ease,border-color var(--trans-time) ease;}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:200;letter-spacing:6px;text-transform:uppercase;color:#FAF6F0;margin-bottom:4px;}
-.footer-logo em{color:var(--gold);font-style:italic;}
-.footer-tagline{font-size:11px;color:rgba(250,246,240,0.3);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;font-weight:300;}
-.footer-divider{height:0.5px;background:linear-gradient(to left,transparent,rgba(196,150,90,0.25),transparent);margin:32px 0;}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
-.footer-copy{font-size:10px;color:rgba(250,246,240,0.25);letter-spacing:1px;}
-.footer-insta{width:38px;height:38px;border:0.5px solid rgba(196,150,90,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;font-size:14px;transition:all 0.3s ease;}
-.footer-insta:hover{background:var(--gold);color:#0A0806;border-color:var(--gold);transform:rotate(15deg) scale(1.1);}
-.mobile-overlay{position:fixed;inset:0;background:var(--menu-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.45s ease;}
-.mobile-overlay.open{opacity:1;pointer-events:all;}
-.mobile-menu{position:fixed;top:0;right:0;bottom:0;width:78%;background:var(--menu-panel);z-index:600;padding:90px 36px 60px;transform:translateX(105%);border-left:0.5px solid var(--border-gold);transition:transform 0.55s cubic-bezier(0.4,0,0.2,1),background var(--trans-time) ease,border-color var(--trans-time) ease;}
-.mobile-menu.open{transform:translateX(0);}
-.menu-close{position:absolute;top:24px;right:28px;background:none;border:0.5px solid var(--border-gold2);border-radius:2px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gold);font-size:14px;transition:all 0.3s ease;}
-.menu-close:hover{background:var(--gold);color:#0A0806;}
-.menu-logo-sm{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:48px;font-style:italic;}
-.menu-nav{display:flex;flex-direction:column;}
-.menu-nav a{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--text-muted);text-decoration:none;padding:18px 0;border-bottom:0.5px solid var(--border-gold);display:flex;justify-content:space-between;align-items:center;transition:all 0.3s ease;overflow:hidden;position:relative;}
-.menu-nav a span{transition:transform 0.4s ease;display:block;}
-.menu-nav a:hover span{transform:translateX(-8px);}
-.menu-nav a:hover{color:var(--gold-light);}
-.menu-nav a::after{content:'←';font-size:16px;color:var(--gold);opacity:0;transition:opacity 0.3s ease;}
-.menu-nav a:hover::after{opacity:1;}
-.menu-footer{position:absolute;bottom:40px;left:36px;right:36px;}
-.menu-insta{display:inline-flex;align-items:center;gap:10px;border:0.5px solid var(--border-gold2);padding:12px 20px;border-radius:2px;color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;}
-.menu-insta:hover{background:var(--gold);color:#0A0806;}
-.reveal-up{opacity:0;transform:translateY(50px);transition:opacity 0.85s cubic-bezier(0.4,0,0.2,1),transform 0.85s cubic-bezier(0.4,0,0.2,1);}
-.reveal-left{opacity:0;transform:translateX(40px);transition:opacity 0.85s cubic-bezier(0.4,0,0.2,1),transform 0.85s cubic-bezier(0.4,0,0.2,1);}
-.reveal-scale{opacity:0;transform:scale(0.94);transition:opacity 0.85s cubic-bezier(0.4,0,0.2,1),transform 0.85s cubic-bezier(0.4,0,0.2,1);}
-.reveal-line{opacity:0;transform:scaleX(0);transform-origin:right;transition:opacity 0.6s ease,transform 0.8s cubic-bezier(0.4,0,0.2,1);}
-.visible{opacity:1 !important;transform:none !important;}
-.d1{transition-delay:0.1s !important;}.d2{transition-delay:0.2s !important;}.d3{transition-delay:0.3s !important;}.d4{transition-delay:0.45s !important;}
+footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px solid var(--border-gold);transition:background var(--trans-time) ease, border-color var(--trans-time) ease;}
+.footer-text {text-align: center; color: var(--gold); font-size: 14px;}
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-  <span class="toggle-icon" id="toggleIcon">☀️</span>
-  <span class="toggle-label" id="toggleLabel">النهاري</span>
-</button>
-
-<div class="mobile-overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="mobile-menu" id="mobileMenu">
-  <button class="menu-close" onclick="closeMenu()">✕</button>
-  <div class="menu-logo-sm">Moni Cook</div>
-  <nav class="menu-nav">
-    <a href="#about" onclick="closeMenu()"><span>من نحن</span></a>
-    <a href="#menu" onclick="closeMenu()"><span>قائمتنا</span></a>
-    <a href="#specialties" onclick="closeMenu()"><span>تخصصاتنا</span></a>
-    <a href="#configurator" onclick="closeMenu()"><span>صمّمي كعكتك</span></a>
-    <a href="#contact" onclick="closeMenu()"><span>تواصل معنا</span></a>
-  </nav>
-  <div class="menu-footer">
-    <a class="menu-insta" href="https://www.instagram.com/_moni_cook_03/" target="_blank">📸 &nbsp; @moni_cook_03</a>
-  </div>
-</div>
-
-<nav id="navbar">
-  <div class="logo">MONI <em>Cook</em></div>
-  <div class="nav-right">
-    <button class="menu-btn" onclick="openMenu()">القائمة</button>
-  </div>
-</nav>
-
-<section class="hero" id="home">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-particles" id="heroParticles"></div>
-  <div class="hero-side-line">
-    <span class="side-text">ALGIERS · 2026</span>
-    <div class="side-line"></div>
-  </div>
-  <div class="scroll-indicator">
-    <div class="scroll-dot"></div>
-    <span class="scroll-text">اكتشفي</span>
-  </div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">حلويات فاخرة · صنع يدوي</span>
-    </div>
-    <h1 class="hero-title">
-      <span class="hero-line"><span class="hero-line-inner">حلاوة</span></span>
-      <span class="hero-line"><em><span class="hero-line-inner">مميزة</span></em></span>
-      <span class="hero-line"><strong><span class="hero-line-inner">في كل لحظة</span></strong></span>
-    </h1>
-    <p class="hero-desc">كعكات وحلويات مصنوعة بعشق، من أجود المكونات الطبيعية، لتُضيف لمسة من الجمال لكل مناسبة خاصة.</p>
-    <div class="hero-actions">
-      <a class="btn-gold" href="#configurator">صمّمي كعكتك</a>
-      <a class="btn-ghost" href="#contact">اطلبي الآن</a>
-    </div>
-  </div>
-  <div class="hero-progress"><div class="hero-progress-fill"></div></div>
-</section>
-
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">كعكات مخصصة <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">CUSTOM CAKES <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">حلويات فرنسية <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">FRENCH PASTRIES <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">أعياد الميلاد <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">WEDDING CAKES <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">مناسبات خاصة <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">BESPOKE DESIGN <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">كعكات مخصصة <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">CUSTOM CAKES <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">حلويات فرنسية <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">FRENCH PASTRIES <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">أعياد الميلاد <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">WEDDING CAKES <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">مناسبات خاصة <span class="marquee-diamond">◆</span></span>
-    <span class="marquee-item">BESPOKE DESIGN <span class="marquee-diamond">◆</span></span>
-  </div>
-</div>
-
-<section class="about" id="about">
-  <div class="about-inner">
-    <div class="label-chip reveal-up"></div>
-    <h2 class="about-title reveal-up d1">الحلاوة هي<br><em>فن وأسلوب حياة</em></h2>
-    <p class="about-body reveal-up d2">في Moni Cook، نؤمن بأن كل كعكة هي تحفة فنية فريدة. نستخدم أجود المكونات الطبيعية ونصنع كل قطعة بعناية واهتمام لا مثيل لهما، لأن لحظاتك الخاصة تستحق أفضل ما يمكن تقديمه.</p>
-  </div>
-  <div class="about-img-wrap reveal-scale d1" id="aboutImg">
-    <img src="https://images.unsplash.com/photo-1557308536-ee471ef2c390?q=90&w=1000&auto=format&fit=crop" alt="تجهيز كعكة" loading="lazy">
-    <div class="about-img-overlay"></div>
-    <span class="about-img-caption">صنع يدوي ·</span>
-  </div>
-  <div class="stats-row">
-    <div class="stat-item reveal-up"><div class="stat-num" id="sn1">0%</div><div class="stat-label">طبيعي</div></div>
-    <div class="stat-item reveal-up d1"><div class="stat-num">★5</div><div class="stat-label">تقييم</div></div>
-    <div class="stat-item reveal-up d2"><div class="stat-num">∞</div><div class="stat-label">إبداع</div></div>
-  </div>
-</section>
-
-<section class="menu-section" id="menu">
-  <div class="section-header reveal-up">
-    <div class="label-chip"><span>قائمتنا</span></div>
-    <h2 class="about-title" style="margin-bottom:0">تشكيلتنا<br><em>الفاخرة</em></h2>
-  </div>
-  <div class="menu-cards">
-    <div class="menu-card reveal-scale">
-      <img src="1000326691.png" alt="كعكة ميلاد الأميرة" loading="lazy">
-      <div class="menu-card-overlay">
-        <div class="card-tag">كعكات أعياد الميلاد</div>
-        <div class="card-name">كعكة ميلاد الأميرة</div>
-        <div class="card-desc">كعكة بتصميم خاص مع تفاصيل أنيقة لحفلات أعياد الميلاد</div>
-        <div class="card-price"><span class="price-val">حسب الطلب</span><div class="price-icon">→</div></div>
-      </div>
-    </div>
-    <div class="menu-card reveal-scale d1">
-      <img src="1000326689.png" alt="تارت الليمون" loading="lazy">
-      <div class="menu-card-overlay">
-        <div class="card-tag">حلويات فرنسية</div>
-        <div class="card-name">تارت الليمون والميرانغ</div>
-        <div class="card-desc">تارت كلاسيكي مع حشوة الليمون المنعشة والميرانغ المحمص</div>
-        <div class="card-price"><span class="price-val">حسب الطلب</span><div class="price-icon">→</div></div>
-      </div>
-    </div>
-    <div class="menu-card reveal-scale">
-      <img src="1000326688.png" alt="تشيز كيك" loading="lazy">
-      <div class="menu-card-overlay">
-        <div class="card-tag">أطباق باردة</div>
-        <div class="card-name">تشيز كيك متنوع</div>
-        <div class="card-desc">قطع تشيز كيك بنكهات مختلفة ترضي جميع الأذواق</div>
-        <div class="card-price"><span class="price-val">حسب الطلب</span><div class="price-icon">→</div></div>
-      </div>
-    </div>
-    <div class="menu-card reveal-scale d1">
-      <img src="1000326692.png" alt="كعكة زفاف" loading="lazy">
-      <div class="menu-card-overlay">
-        <div class="card-tag">كعكات الزفاف</div>
-        <div class="card-name">كعكة زفاف كلاسيكية</div>
-        <div class="card-desc">كعكة زفاف فاخرة مزينة بالورود الحمراء وتفاصيل ذهبية</div>
-        <div class="card-price"><span class="price-val">حسب الطلب</span><div class="price-icon">→</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="specialties" id="specialties">
-  <div class="spec-header reveal-up">
-    <div class="label-chip"><span>تخصصاتنا</span></div>
-    <h2 class="about-title" style="margin-bottom:0">كل مناسبة<br><em>تستحق كعكة</em></h2>
-  </div>
-  <div class="spec-list">
-    <div class="spec-item reveal-left"><span class="spec-num">01</span><span class="spec-name">كعكات أعياد الميلاد</span><span class="spec-arr">←</span></div>
-    <div class="spec-item reveal-left d1"><span class="spec-num">02</span><span class="spec-name">كعكات الزفاف</span><span class="spec-arr">←</span></div>
-    <div class="spec-item reveal-left d2"><span class="spec-num">03</span><span class="spec-name">كعكات مخصصة</span><span class="spec-arr">←</span></div>
-    <div class="spec-item reveal-left d3"><span class="spec-num">04</span><span class="spec-name">حلويات الأعراس</span><span class="spec-arr">←</span></div>
-    <div class="spec-item reveal-left d4"><span class="spec-num">05</span><span class="spec-name">صناديق هدايا فاخرة</span><span class="spec-arr">←</span></div>
-  </div>
-</section>
-
-<section class="configurator-section" id="configurator">
-  <div class="config-header reveal-up">
-    <div class="label-chip"><span>مُصمِّمة الكعكة</span></div>
-    <h2 class="about-title" style="margin-bottom:6px">صمّمي<br><em>كعكتك الخاصة</em></h2>
-    <p class="about-body" style="font-size:12px;">اختاري كل تفصيلة بنفسك — من القاعدة إلى الحشوة والقطر</p>
+<section class="configurator-section" id="order">
+  <div class="config-header">
+    <h2 class="panel-title">صمم طلبك</h2>
   </div>
 
   <div class="config-steps">
-    <div class="config-step active-step" id="stepTab0" onclick="goStep(0)">
-      <div class="step-circle active" id="stepCircle0">1</div>
-      <div class="step-label">القاعدة</div>
+    <div class="config-step active-step" data-step="1">
+      <div class="step-circle active">1</div>
+      <span class="step-label">النوع</span>
     </div>
-    <div class="step-connector" id="conn0"></div>
-    <div class="config-step" id="stepTab1" onclick="goStep(1)">
-      <div class="step-circle" id="stepCircle1">2</div>
-      <div class="step-label">القطر</div>
+    <div class="step-connector"></div>
+    <div class="config-step" data-step="2">
+      <div class="step-circle">2</div>
+      <span class="step-label">الحشوات</span>
     </div>
-    <div class="step-connector" id="conn1"></div>
-    <div class="config-step" id="stepTab2" onclick="goStep(2)">
-      <div class="step-circle" id="stepCircle2">3</div>
-      <div class="step-label">الحشوات</div>
-    </div>
-    <div class="step-connector" id="conn2"></div>
-    <div class="config-step" id="stepTab3" onclick="goStep(3)">
-      <div class="step-circle" id="stepCircle3">4</div>
-      <div class="step-label">ملاحظات</div>
-    </div>
-    <div class="step-connector" id="conn3"></div>
-    <div class="config-step" id="stepTab4" onclick="goStep(4)">
-      <div class="step-circle" id="stepCircle4">5</div>
-      <div class="step-label">الطلب</div>
+    <div class="step-connector"></div>
+    <div class="config-step" data-step="3">
+      <div class="step-circle">3</div>
+      <span class="step-label">الطلب</span>
     </div>
   </div>
 
   <div class="config-panels">
-
-    <!-- STEP 1: BASE -->
-    <div class="config-panel active" id="panel0">
-      <div class="panel-title">نوع القاعدة</div>
-      <div class="panel-subtitle">اختاري قاعدة كعكتك</div>
+    <!-- Panel 1: Type -->
+    <div class="config-panel active" id="panel-1">
+      <h3 class="panel-title">اختر النوع</h3>
       <div class="options-grid">
-        <div class="option-card" data-field="base" data-val="chantilly" onclick="selectOption(this)">
-          <span class="option-emoji">🍦</span>
-          <div class="option-name">كريم شونتي</div>
-          <div class="option-desc">Crème Chantilly — خفيف وهوائي، طعم حليبي راقٍ</div>
+        <div class="option-card" data-type="كعكة زفاف">
+          <span class="option-name">كعكة زفاف</span>
         </div>
-        <div class="option-card" data-field="base" data-val="sucree" onclick="selectOption(this)">
-          <span class="option-emoji">🥐</span>
-          <div class="option-name">باتَ سوكري</div>
-          <div class="option-desc">Pâte Sucrée — عجينة مقرمشة حلوة، تارت فرنسي أصيل</div>
+        <div class="option-card" data-type="كعكة ميلاد">
+          <span class="option-name">كعكة ميلاد</span>
         </div>
       </div>
-      <div class="hint-text" id="hint0">⚠ يرجى اختيار نوع القاعدة للمتابعة</div>
       <div class="config-nav">
         <div></div>
-        <button class="btn-config-next" onclick="nextStep(0)">التالي ←</button>
+        <button class="btn-config-next" disabled>التالي</button>
       </div>
     </div>
 
-    <!-- STEP 2: SIZE -->
-    <div class="config-panel" id="panel1">
-      <div class="panel-title">قطر الكعكة</div>
-      <div class="panel-subtitle">اختاري الحجم المناسب بالسنتيمتر</div>
-      <div class="size-grid">
-        <div class="size-card" data-field="size" data-val="16" onclick="selectSize(this)">
-          <span class="size-cm">16</span><span class="size-unit">سم</span><div class="size-note">4–6 أشخاص</div>
-        </div>
-        <div class="size-card" data-field="size" data-val="18" onclick="selectSize(this)">
-          <span class="size-cm">18</span><span class="size-unit">سم</span><div class="size-note">6–8 أشخاص</div>
-        </div>
-        <div class="size-card" data-field="size" data-val="20" onclick="selectSize(this)">
-          <span class="size-cm">20</span><span class="size-unit">سم</span><div class="size-note">8–10 أشخاص</div>
-        </div>
-        <div class="size-card" data-field="size" data-val="22" onclick="selectSize(this)">
-          <span class="size-cm">22</span><span class="size-unit">سم</span><div class="size-note">10–12 شخصًا</div>
-        </div>
-        <div class="size-card" data-field="size" data-val="25" onclick="selectSize(this)">
-          <span class="size-cm">25</span><span class="size-unit">سم</span><div class="size-note">12–16 شخصًا</div>
-        </div>
+    <!-- Panel 2: Multiple Fillings -->
+    <div class="config-panel" id="panel-2">
+      <h3 class="panel-title">اختر الحشوات (يمكنك اختيار أكثر من واحدة)</h3>
+      <div class="filling-grid">
+        <div class="filling-chip" data-fill="شوكولاتة بلجيكية">شوكولاتة بلجيكية</div>
+        <div class="filling-chip" data-fill="كراميل مملح">كراميل مملح</div>
+        <div class="filling-chip" data-fill="فواكه غابية">فواكه غابية</div>
+        <div class="filling-chip" data-fill="كريمة فستق">كريمة فستق</div>
+        <div class="filling-chip" data-fill="قهوة وبندق">قهوة وبندق</div>
       </div>
-      <div class="hint-text" id="hint1">⚠ يرجى اختيار القطر للمتابعة</div>
       <div class="config-nav">
-        <button class="btn-config-prev" onclick="prevStep(1)">→ السابق</button>
-        <button class="btn-config-next" onclick="nextStep(1)">التالي ←</button>
+        <button class="btn-config-prev">السابق</button>
+        <button class="btn-config-next" disabled>التالي</button>
       </div>
     </div>
 
-    <!-- STEP 3: FILLINGS -->
-    <div class="config-panel" id="panel2">
-      <div class="panel-title">الحشوات</div>
-      <div class="panel-subtitle">اختاري واحدة أو أكثر حسب ذوقك</div>
-      <div class="filling-grid" id="fillingGrid">
-        <div class="filling-chip" data-val="فراولة" onclick="toggleFilling(this)">🍓 فراولة</div>
-        <div class="filling-chip" data-val="تشوكليت" onclick="toggleFilling(this)">🍫 تشوكليت</div>
-        <div class="filling-chip" data-val="فانيليا" onclick="toggleFilling(this)">🍨 فانيليا</div>
-        <div class="filling-chip" data-val="كراميل" onclick="toggleFilling(this)">🍮 كراميل</div>
-        <div class="filling-chip" data-val="نوتيلا" onclick="toggleFilling(this)">🌰 نوتيلا</div>
-        <div class="filling-chip" data-val="ليمون" onclick="toggleFilling(this)">🍋 ليمون</div>
-        <div class="filling-chip" data-val="بسكوف" onclick="toggleFilling(this)">🍪 بسكوف</div>
-        <div class="filling-chip" data-val="مانغو" onclick="toggleFilling(this)">🥭 مانغو</div>
-        <div class="filling-chip" data-val="تشيز كريم" onclick="toggleFilling(this)">🧀 تشيز كريم</div>
-        <div class="filling-chip" data-val="بيستاش" onclick="toggleFilling(this)">💚 بيستاش</div>
-      </div>
-      <div class="hint-text" id="hint2">⚠ اختاري حشوة واحدة على الأقل</div>
-      <div class="config-nav">
-        <button class="btn-config-prev" onclick="prevStep(2)">→ السابق</button>
-        <button class="btn-config-next" onclick="nextStep(2)">التالي ←</button>
-      </div>
-    </div>
-
-    <!-- STEP 4: NOTES -->
-    <div class="config-panel" id="panel3">
-      <div class="panel-title">ملاحظات التصميم</div>
-      <div class="panel-subtitle">أخبرينا بتفاصيل الكعكة التي تحلمين بها</div>
-      <textarea class="notes-area" id="notesArea" maxlength="400"
-        placeholder="مثال: كعكة عيد ميلاد لبنتي، ألوان وردية وبنفسجية، اسم &quot;ليلى&quot; بالذهبي، زينة بالورود وبالأميرات...&#10;&#10;يمكنك ذكر لون الكريمة، طريقة التزيين، الكتابة المطلوبة، أي موضوع أو ثيم تريدينه."
-        oninput="updateCharCount()"></textarea>
-      <div class="char-count" id="charCount">0 / 400</div>
-      <div class="config-nav">
-        <button class="btn-config-prev" onclick="prevStep(3)">→ السابق</button>
-        <button class="btn-config-next" onclick="nextStep(3)">مراجعة الطلب ←</button>
-      </div>
-    </div>
-
-    <!-- STEP 5: SUMMARY -->
-    <div class="config-panel" id="panel4">
-      <div class="panel-title">ملخص طلبك</div>
-      <div class="panel-subtitle">راجعي اختياراتك قبل الإرسال</div>
-
-      <!-- زر نسخ الطلب — في الأعلى -->
-      <button class="btn-copy-order" id="btnCopyOrder" onclick="copyOrderText()">
-        <div class="copy-order-label">
-          <span class="copy-order-icon">📋</span>
-          <span>نسخ تفاصيل الطلب</span>
-        </div>
-        <span class="copy-order-badge" id="copyOrderBadge">نسخ</span>
-      </button>
-
+    <!-- Panel 3: Order Summary -->
+    <div class="config-panel" id="panel-3">
       <div class="order-summary">
-        <div class="summary-title">طلب كعكة مخصصة</div>
+        <div class="summary-title">ملخص الطلب</div>
         <div class="summary-row">
-          <div class="summary-key">القاعدة</div>
-          <div class="summary-val" id="sumBase">—</div>
+          <span class="summary-key">النوع</span>
+          <span class="summary-val" id="summary-type">-</span>
         </div>
         <div class="summary-row">
-          <div class="summary-key">القطر</div>
-          <div class="summary-val" id="sumSize">—</div>
-        </div>
-        <div class="summary-row">
-          <div class="summary-key">الحشوات</div>
-          <div class="summary-val" id="sumFillings">—</div>
-        </div>
-        <div class="summary-row">
-          <div class="summary-key">ملاحظات</div>
-          <div class="summary-val" id="sumNotes" style="font-size:13px;font-family:'Tajawal',sans-serif;">—</div>
+          <span class="summary-key">الحشوات</span>
+          <span class="summary-val" id="summary-fillings">-</span>
         </div>
       </div>
 
-      <!-- زر واتساب -->
-      <a class="btn-whatsapp" id="btnWhatsapp" href="#" target="_blank">
-        📱 إرسال عبر واتساب
+      <!-- أزرار التواصل (تم إضافة الروابط المطلوبة) -->
+      <a href="https://wa.me/qr/FMOJITEW2ZM7O1" target="_blank" class="btn-whatsapp">
+        تأكيد عبر واتساب
       </a>
-
-      <!-- زر إنستغرام مع النسخ التلقائي -->
-      <button class="btn-insta-order" id="btnInstaOrder" onclick="sendViaInstagram()">
-        📸 إرسال عبر إنستغرام
-      </button>
-
-      <!-- رسالة تأكيد النسخ -->
-      <div class="copy-feedback" id="copyFeedback">
-        ✓ تم نسخ تفاصيل الطلب — الصقيها في رسالة الإنستغرام
-      </div>
-
-      <button class="reset-btn" onclick="resetConfig()">✕ بدء من جديد</button>
-      <div style="height:32px;"></div>
-    </div>
-
-  </div>
-</section>
-
-<section class="order-section">
-  <div class="order-eyebrow reveal-up">اطلبي الآن</div>
-  <div class="order-title reveal-up d1">حلاوة<br><em>تصلكِ</em></div>
-  <p class="order-sub reveal-up d2">توصيل لجميع أنحاء الاغواط · أوردرات مسبقة</p>
-  <a class="btn-insta reveal-up d3" href="https://www.instagram.com/p/DVUTwxWALYz/" target="_blank">📸 &nbsp; تواصلي عبر إنستغرام</a>
-</section>
-
-<section class="contact-section" id="contact">
-  <div class="contact-inner">
-    <div class="label-chip reveal-up"><span>تواصلي معنا</span></div>
-    <h2 class="about-title reveal-up d1">نحن هنا<br><em>من أجلكِ</em></h2>
-    <div class="contact-list">
-      <div class="contact-item reveal-left">
-        <div class="ci-number">01</div>
-        <div class="ci-content"><div class="ci-label">Instagram</div><div class="ci-value">@moni_cook_03</div></div>
-      </div>
-      <div class="contact-item reveal-left d1">
-        <div class="ci-number">02</div>
-        <div class="ci-content"><div class="ci-label">الموقع</div><div class="ci-value">الاغواط</div></div>
-      </div>
-      <div class="contact-item reveal-left d2">
-        <div class="ci-number">03</div>
-        <div class="ci-content"><div class="ci-label">طريقة الطلب</div><div class="ci-value">مسبق عبر إنستغرام</div></div>
+      <a href="https://www.instagram.com/_moni_cook_03/" target="_blank" class="btn-insta-order">
+        تواصل عبر إنستغرام
+      </a>
+      
+      <div class="config-nav">
+        <button class="btn-config-prev">السابق</button>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">MONI <em>Cook</em></div>
-  <div class="footer-tagline">حلويات فاخرة · صنع يدوي بعشق</div>
-  <div class="footer-divider"></div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Moni Cook</span>
-    <a class="footer-insta" href="https://www.instagram.com/_moni_cook_03/" target="_blank">📸</a>
-  </div>
+   <div class="footer-text">Moni Cook © 2026</div>
 </footer>
 
 <script>
-/* ─── THEME ─── */
-let isDark = true;
-function toggleTheme() {
-  isDark = !isDark;
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  document.getElementById('toggleIcon').textContent  = isDark ? '☀️' : '🌙';
-  document.getElementById('toggleLabel').textContent = isDark ? 'النهاري' : 'الليلي';
-  createParticles();
-}
-
-/* ─── PARTICLES ─── */
-function createParticles() {
-  const container = document.getElementById('heroParticles');
-  container.innerHTML = '';
-  for (let i = 0; i < 18; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.bottom = '-10px';
-    p.style.width  = (1.5 + Math.random() * 3) + 'px';
-    p.style.height = p.style.width;
-    p.style.animationDuration = (6 + Math.random() * 12) + 's';
-    p.style.animationDelay   = (Math.random() * 10) + 's';
-    p.style.opacity = 0;
-    container.appendChild(p);
-  }
-}
-createParticles();
-
-/* ─── CURSOR ─── */
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-});
-(function animRing() {
-  rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
-  cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
-  requestAnimationFrame(animRing);
-})();
-document.querySelectorAll('a, button, .menu-card, .spec-item, .contact-item, .option-card, .size-card, .filling-chip, .config-step').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); cursorRing.classList.add('hover'); });
-  el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorRing.classList.remove('hover'); });
-});
-
-/* ─── HERO ─── */
-window.addEventListener('load', () => document.getElementById('heroBg').classList.add('loaded'));
-
-/* ─── NAV SCROLL + PARALLAX ─── */
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
-  const s = window.scrollY;
-  if (s < window.innerHeight)
-    document.getElementById('heroBg').style.transform = `translateY(${s * 0.28}px) scale(1)`;
-}, { passive: true });
-
-/* ─── MOBILE MENU ─── */
-function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
-function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
-
-/* ─── SMOOTH SCROLL ─── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-
-/* ─── REVEAL ─── */
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale, .reveal-line').forEach(el => ro.observe(el));
-
-const imgObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('img-revealed'); imgObs.unobserve(e.target); } });
-}, { threshold: 0.2 });
-document.querySelectorAll('.about-img-wrap').forEach(el => imgObs.observe(el));
-
-/* ─── COUNTER ─── */
-function animCount(el, to, suffix, dur = 1800) {
-  let s = null;
-  const fn = ts => {
-    if (!s) s = ts;
-    const p  = Math.min((ts - s) / dur, 1);
-    const e2 = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(e2 * to) + suffix;
-    if (p < 1) requestAnimationFrame(fn);
+document.addEventListener("DOMContentLoaded", () => {
+  let currentStep = 1;
+  let orderData = {
+    type: "",
+    fillings: [] // تحويل الحشوات إلى مصفوفة (Array) للسماح بالتحديد المتعدد
   };
-  requestAnimationFrame(fn);
-}
-const cntObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { animCount(document.getElementById('sn1'), 100, '%'); cntObs.disconnect(); } });
-}, { threshold: 0.5 });
-const sr = document.querySelector('.stats-row');
-if (sr) cntObs.observe(sr);
 
-/* ─── MAGNETIC BUTTONS ─── */
-document.querySelectorAll('.btn-gold, .btn-insta, .menu-btn, .btn-config-next').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const dx = (e.clientX - r.left - r.width / 2) * 0.25;
-    const dy = (e.clientY - r.top  - r.height / 2) * 0.25;
-    btn.style.transform = `translate(${dx}px, ${dy}px)`;
+  const panels = document.querySelectorAll('.config-panel');
+  const steps = document.querySelectorAll('.config-step');
+  const nextBtns = document.querySelectorAll('.btn-config-next');
+  const prevBtns = document.querySelectorAll('.btn-config-prev');
+
+  // معالجة اختيار النوع (Single Select)
+  const typeCards = document.querySelectorAll('.option-card');
+  typeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      typeCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      orderData.type = card.getAttribute('data-type');
+      checkStepValidity();
+    });
   });
-  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-});
 
-/* ─── TILT on menu cards ─── */
-document.querySelectorAll('.menu-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width  - 0.5;
-    const y = (e.clientY - r.top)  / r.height - 0.5;
-    card.style.transform = `perspective(800px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) scale(1.02)`;
+  // معالجة اختيار الحشوات (Multi-Select - تحديد متعدد)
+  const fillingChips = document.querySelectorAll('.filling-chip');
+  fillingChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const fillValue = chip.getAttribute('data-fill');
+      
+      // إذا كانت الحشوة موجودة مسبقاً، قم بإزالتها، وإلا قم بإضافتها
+      if (orderData.fillings.includes(fillValue)) {
+        orderData.fillings = orderData.fillings.filter(f => f !== fillValue);
+        chip.classList.remove('selected');
+      } else {
+        orderData.fillings.push(fillValue);
+        chip.classList.add('selected');
+      }
+      checkStepValidity();
+    });
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.transition = 'transform 0.5s ease';
-    setTimeout(() => card.style.transition = '', 500);
-  });
-});
 
-/* ─── SPEC STAGGER ─── */
-document.querySelectorAll('.spec-list').forEach(list => {
-  list.addEventListener('mouseenter', () => {
-    list.querySelectorAll('.spec-item').forEach((item, i) => { item.style.transitionDelay = (i * 0.04) + 's'; });
-  });
-  list.addEventListener('mouseleave', () => {
-    list.querySelectorAll('.spec-item').forEach(item => { item.style.transitionDelay = '0s'; });
-  });
-});
+  // التحقق من صحة الخطوة لتفعيل زر "التالي"
+  function checkStepValidity() {
+    const activePanel = document.querySelector('.config-panel.active');
+    const nextBtn = activePanel.querySelector('.btn-config-next');
+    if (!nextBtn) return;
 
-/* ════════════════════════════════════════
-   ★ CAKE CONFIGURATOR LOGIC ★
-════════════════════════════════════════ */
-let currentStep = 0;
-const config = { base: null, size: null, fillings: [], notes: '' };
-const baseLabels = {
-  chantilly: 'كريم شونتي (Crème Chantilly)',
-  sucree:    'باتَ سوكري (Pâte Sucrée)'
-};
-
-function goStep(step) {
-  if (step >= currentStep) return;
-  setStep(step);
-}
-
-function setStep(step) {
-  document.querySelectorAll('.config-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel' + step).classList.add('active');
-
-  for (let i = 0; i < 5; i++) {
-    const circle = document.getElementById('stepCircle' + i);
-    const tab    = document.getElementById('stepTab' + i);
-    const conn   = document.getElementById('conn' + i);
-    circle.classList.remove('active', 'done');
-    tab.classList.remove('active-step');
-    if (i < step) {
-      circle.classList.add('done'); circle.textContent = '✓';
-      if (conn) conn.classList.add('done');
-    } else if (i === step) {
-      circle.classList.add('active'); circle.textContent = i + 1;
-      tab.classList.add('active-step');
-      if (conn) conn.classList.remove('done');
-    } else {
-      circle.textContent = i + 1;
-      if (conn) conn.classList.remove('done');
+    if (currentStep === 1) {
+      nextBtn.disabled = !orderData.type;
+    } else if (currentStep === 2) {
+      // السماح بالمرور فقط إذا تم اختيار حشوة واحدة على الأقل
+      nextBtn.disabled = orderData.fillings.length === 0;
     }
   }
-  currentStep = step;
-  setTimeout(() => {
-    document.getElementById('configurator').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
-}
 
-function nextStep(from) {
-  if (from === 0 && !config.base)             { document.getElementById('hint0').classList.add('show'); return; }
-  if (from === 1 && !config.size)             { document.getElementById('hint1').classList.add('show'); return; }
-  if (from === 2 && config.fillings.length === 0) { document.getElementById('hint2').classList.add('show'); return; }
-  if (from === 3) {
-    config.notes = document.getElementById('notesArea').value.trim();
-    buildSummary();
-  }
-  setStep(from + 1);
-}
+  // تحديث واجهة الخطوات (الدوائر العلوية)
+  function updateStepsUI() {
+    panels.forEach((p, idx) => {
+      p.classList.toggle('active', idx + 1 === currentStep);
+    });
 
-function prevStep(from) { if (from > 0) setStep(from - 1); }
+    steps.forEach((s, idx) => {
+      const stepNum = idx + 1;
+      const circle = s.querySelector('.step-circle');
+      
+      if (stepNum === currentStep) {
+        circle.className = 'step-circle active';
+        s.classList.add('active-step');
+      } else if (stepNum < currentStep) {
+        circle.className = 'step-circle done';
+        circle.innerHTML = '✓';
+        s.classList.remove('active-step');
+      } else {
+        circle.className = 'step-circle';
+        circle.innerHTML = stepNum;
+        s.classList.remove('active-step');
+      }
+    });
 
-function selectOption(el) {
-  const field = el.dataset.field;
-  document.querySelectorAll(`[data-field="${field}"]`).forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  config[field] = el.dataset.val;
-  document.getElementById('hint0').classList.remove('show');
-}
+    const connectors = document.querySelectorAll('.step-connector');
+    connectors.forEach((conn, idx) => {
+      if (idx + 1 < currentStep) {
+        conn.classList.add('done');
+      } else {
+        conn.classList.remove('done');
+      }
+    });
 
-function selectSize(el) {
-  document.querySelectorAll('.size-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  config.size = el.dataset.val;
-  document.getElementById('hint1').classList.remove('show');
-}
-
-function toggleFilling(el) {
-  const val = el.dataset.val;
-  if (el.classList.contains('selected')) {
-    el.classList.remove('selected');
-    config.fillings = config.fillings.filter(f => f !== val);
-  } else {
-    el.classList.add('selected');
-    config.fillings.push(val);
-  }
-  document.getElementById('hint2').classList.remove('show');
-}
-
-function updateCharCount() {
-  const v = document.getElementById('notesArea').value;
-  document.getElementById('charCount').textContent = v.length + ' / 400';
-}
-
-function buildOrderText() {
-  return (
-    `🍰 طلب كعكة مخصصة من Moni Cook\n\n` +
-    `🎂 القاعدة: ${baseLabels[config.base] || '—'}\n` +
-    `📏 القطر: ${config.size ? config.size + ' سم' : '—'}\n` +
-    `🍓 الحشوات: ${config.fillings.length ? config.fillings.join('، ') : '—'}\n` +
-    `📝 ملاحظات التصميم:\n${config.notes || 'لا توجد ملاحظات'}\n\n` +
-    `أرجو التواصل لتأكيد الطلب وتحديد موعد التسليم 🌸`
-  );
-}
-
-function buildSummary() {
-  document.getElementById('sumBase').textContent     = baseLabels[config.base] || '—';
-  document.getElementById('sumSize').textContent     = config.size ? config.size + ' سم' : '—';
-  document.getElementById('sumFillings').textContent = config.fillings.length ? config.fillings.join('، ') : '—';
-  document.getElementById('sumNotes').textContent    = config.notes || 'لا توجد ملاحظات';
-
-  /* واتساب */
-  const waMsg = encodeURIComponent(buildOrderText());
-  document.getElementById('btnWhatsapp').href = `https://wa.me/213000000000?text=${waMsg}`;
-}
-
-/* ══ نسخ تفاصيل الطلب (زر الأعلى) ══ */
-function copyOrderText() {
-  const text = buildOrderText();
-  const btn   = document.getElementById('btnCopyOrder');
-  const badge = document.getElementById('copyOrderBadge');
-
-  function onCopied() {
-    btn.classList.add('copied');
-    badge.textContent = '✓ تم النسخ';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      badge.textContent = 'نسخ';
-    }, 3000);
+    // تحديث الملخص في الخطوة الأخيرة
+    if (currentStep === 3) {
+      document.getElementById('summary-type').textContent = orderData.type;
+      // دمج جميع الحشوات المختارة وعرضها
+      document.getElementById('summary-fillings').textContent = orderData.fillings.join('، ');
+    }
   }
 
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(onCopied).catch(() => { fallbackCopy(text); onCopied(); });
-  } else {
-    fallbackCopy(text); onCopied();
-  }
-}
+  // أزرار التنقل
+  nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep < 3) {
+        currentStep++;
+        updateStepsUI();
+        checkStepValidity();
+      }
+    });
+  });
 
-/* ══ إرسال عبر إنستغرام ══
-   1. ينسخ نص الطلب في الحافظة
-   2. يفتح محادثة DM مباشرة مع الحساب
-*/
-function sendViaInstagram() {
-  const text = buildOrderText();
-  const feedback = document.getElementById('copyFeedback');
-
-  function openIG() {
-    window.open('https://ig.me/m/moni_cook_03', '_blank');
-  }
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        feedback.classList.add('show');
-        setTimeout(() => feedback.classList.remove('show'), 5000);
-        setTimeout(openIG, 300);
-      })
-      .catch(() => {
-        fallbackCopy(text);
-        setTimeout(openIG, 300);
-      });
-  } else {
-    fallbackCopy(text);
-    setTimeout(openIG, 300);
-  }
-}
-
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
-  document.body.appendChild(ta);
-  ta.focus(); ta.select();
-  try {
-    document.execCommand('copy');
-    const feedback = document.getElementById('copyFeedback');
-    feedback.classList.add('show');
-    setTimeout(() => feedback.classList.remove('show'), 5000);
-  } catch(e) {}
-  document.body.removeChild(ta);
-}
-
-function resetConfig() {
-  config.base = null; config.size = null; config.fillings = []; config.notes = '';
-  document.querySelectorAll('.option-card, .size-card, .filling-chip').forEach(el => el.classList.remove('selected'));
-  document.getElementById('notesArea').value = '';
-  document.getElementById('charCount').textContent = '0 / 400';
-  document.querySelectorAll('.hint-text').forEach(h => h.classList.remove('show'));
-  document.getElementById('copyFeedback').classList.remove('show');
-  setStep(0);
-}
+  prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepsUI();
+        checkStepValidity();
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>
