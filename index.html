@@ -1,3 +1,4 @@
+cat > /mnt/user-data/outputs/moni_cook.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="light">
 <head>
@@ -62,14 +63,69 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .theme-toggle:hover .toggle-icon{transform:rotate(20deg);}
 .toggle-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Tajawal',sans-serif;font-weight:400;}
 
-/* ═══════════════════════ 3D CAKE ANIMATION HERO ═══════════════════════ */
+/* ═══════════════════════ HERO VIDEO ═══════════════════════ */
 .hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
-.hero-canvas-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;}
-#cakeCanvas{width:100%;height:100%;display:block;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(170deg,rgba(10,8,6,0.15) 0%,rgba(10,8,6,0.05) 30%,rgba(10,8,6,0.55) 65%,rgba(10,8,6,0.97) 100%);z-index:2;}
+
+/* Video container */
+.hero-video-wrap{position:absolute;inset:0;z-index:1;overflow:hidden;}
+.hero-video-wrap video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:brightness(0.82) saturate(1.1);
+}
+/* Fallback image shown if video fails */
+.hero-video-wrap .video-fallback{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=90&w=800&auto=format&fit=crop') center/cover no-repeat;
+  display:none;
+}
+.hero-video-wrap video.errored ~ .video-fallback{display:block;}
+
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(170deg,rgba(10,8,6,0.18) 0%,rgba(10,8,6,0.08) 28%,rgba(10,8,6,0.5) 62%,rgba(10,8,6,0.96) 100%);z-index:2;}
+
+/* Shimmer gold vignette overlay */
+.hero-vignette{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%, transparent 40%, rgba(10,8,6,0.35) 100%);
+}
+
 .hero-particles{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;}
 .particle{position:absolute;width:3px;height:3px;background:rgba(196,150,90,0.5);border-radius:50%;animation:floatUp linear infinite;}
 @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:0;}10%{opacity:1;}90%{opacity:0.6;}100%{transform:translateY(-100vh) scale(0.3);opacity:0;}}
+
+/* Gold frame corners on video */
+.hero-corner{position:absolute;width:28px;height:28px;z-index:4;opacity:0;animation:fadeInCorner 1s 1s ease forwards;}
+@keyframes fadeInCorner{to{opacity:0.7;}}
+.hero-corner--tl{top:20px;right:20px;border-top:1px solid var(--gold);border-right:1px solid var(--gold);}
+.hero-corner--tr{top:20px;left:20px;border-top:1px solid var(--gold);border-left:1px solid var(--gold);}
+.hero-corner--bl{bottom:90px;right:20px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold);}
+.hero-corner--br{bottom:90px;left:20px;border-bottom:1px solid var(--gold);border-left:1px solid var(--gold);}
+
+/* Video mute/unmute toggle */
+.hero-sound-btn{
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);
+  z-index:6;
+  background:rgba(10,8,6,0.55);
+  border:0.5px solid rgba(196,150,90,0.4);
+  border-radius:50px;
+  padding:6px 14px;
+  display:flex;align-items:center;gap:7px;
+  cursor:pointer;
+  color:rgba(250,246,240,0.8);
+  font-family:'Tajawal',sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:all 0.3s ease;
+  backdrop-filter:blur(8px);
+  opacity:0;
+  animation:fadeIn 1s 1.5s ease forwards;
+}
+.hero-sound-btn:hover{border-color:var(--gold);color:var(--gold);}
+.sound-icon{font-size:13px;}
+
 .hero-side-line{position:absolute;top:50%;right:24px;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;z-index:5;animation:fadeInRight 1.5s 1.2s ease forwards;opacity:0;}
 @keyframes fadeInRight{from{opacity:0;transform:translateY(-50%) translateX(10px);}to{opacity:1;transform:translateY(-50%) translateX(0);}}
 .side-text{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);writing-mode:vertical-rl;text-orientation:mixed;opacity:0.7;}
@@ -192,8 +248,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes panelFadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .panel-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--text-primary);margin-bottom:6px;transition:color var(--trans-time) ease;}
 .panel-subtitle{font-size:11px;color:var(--text-faint);letter-spacing:1.5px;margin-bottom:28px;transition:color var(--trans-time) ease;}
-
-/* ═══════════════════════ IMAGE OPTION CARDS ═══════════════════════ */
 .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
 .option-card{border:0.5px solid var(--border-gold);border-radius:8px;cursor:pointer;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);background:var(--option-bg);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;box-shadow:0 6px 16px var(--depth-shadow-soft),inset 0 1px 0 var(--surface-edge);height:150px;}
 .option-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.4s ease;filter:var(--img-filter);}
@@ -206,7 +260,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .option-card.selected::after{content:'✓';position:absolute;top:8px;left:10px;font-size:11px;color:#FAF6F0;font-family:'Cormorant Garamond',serif;width:22px;height:22px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:3;text-align:center;line-height:22px;}
 .option-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px var(--depth-shadow-soft),inset 0 1px 0 var(--surface-edge);}
 .option-card.selected{box-shadow:0 10px 26px rgba(196,150,90,0.22),inset 0 1px 0 var(--surface-edge-strong);transform:translateY(-2px);}
-
 .size-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px;}
 .size-card{border:0.5px solid var(--border-gold);border-radius:8px;padding:14px 6px;cursor:pointer;text-align:center;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);background:var(--option-bg);-webkit-tap-highlight-color:transparent;box-shadow:0 6px 16px var(--depth-shadow-soft),inset 0 1px 0 var(--surface-edge);}
 .size-card:hover{border-color:var(--border-gold2);background:var(--option-hover);transform:translateY(-3px);box-shadow:0 12px 26px var(--depth-shadow-soft),inset 0 1px 0 var(--surface-edge);}
@@ -357,11 +410,6 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
 .social-dot{width:36px;height:36px;border:0.5px solid var(--border-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(250,246,240,0.5);font-size:14px;transition:all 0.3s ease;}
 .social-dot:hover{border-color:var(--gold);color:var(--gold);background:rgba(196,150,90,0.08);transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,0.3);}
 .footer-copy{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(250,246,240,0.4);transition:color var(--trans-time) ease;}
-
-/* ═══════════════════════ CAKE BUILD LABEL ═══════════════════════ */
-.cake-build-label{position:absolute;top:32px;left:50%;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeIn 0.8s 0.3s ease forwards;}
-.cake-build-label-inner{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
-.cake-build-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulseDot 1.5s ease infinite;}
 </style>
 </head>
 <body>
@@ -376,17 +424,47 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-canvas-wrap">
-    <canvas id="cakeCanvas"></canvas>
+
+  <!-- ✅ VIDEO BACKGROUND -->
+  <div class="hero-video-wrap" id="heroVideoWrap">
+    <!--
+      استخدمنا فيديو Pexels مجاني لكعكة حقيقية (MP4 مباشر).
+      المصدر الأول: Pexels – كعكة زفاف فاخرة
+      المصدر الثاني: احتياطي بنفس المحتوى
+    -->
+    <video
+      id="heroVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop"
+    >
+      <!-- Source 1: Pexels free cake video -->
+      <source src="https://videos.pexels.com/video-files/3994993/3994993-uhd_2732_1440_25fps.mp4" type="video/mp4">
+      <!-- Source 2: alternate Pexels cake video -->
+      <source src="https://videos.pexels.com/video-files/5648398/5648398-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+    <!-- Fallback image if video blocked -->
+    <div class="video-fallback"></div>
   </div>
+
   <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
   <div class="hero-particles" id="particles"></div>
 
-  <div class="cake-build-label">
-    <div class="cake-build-dot"></div>
-    <span class="cake-build-label-inner">يُبنى بالحب</span>
-    <div class="cake-build-dot"></div>
-  </div>
+  <!-- Gold corner frames -->
+  <div class="hero-corner hero-corner--tl"></div>
+  <div class="hero-corner hero-corner--tr"></div>
+  <div class="hero-corner hero-corner--bl"></div>
+  <div class="hero-corner hero-corner--br"></div>
+
+  <!-- Sound toggle button -->
+  <button class="hero-sound-btn" id="soundBtn" onclick="toggleSound()" aria-label="تشغيل/إيقاف الصوت">
+    <span class="sound-icon" id="soundIcon">🔇</span>
+    <span id="soundLabel">صامت</span>
+  </button>
 
   <div class="hero-side-line">
     <span class="side-text">حلويات فاخرة</span>
@@ -562,7 +640,7 @@ footer{background:var(--footer-bg);padding:60px 28px 100px;border-top:0.5px soli
 
   <div class="config-panels">
 
-    <!-- PANEL 1: TYPE — IMAGE CARDS -->
+    <!-- PANEL 1: TYPE -->
     <div class="config-panel active" id="panel1">
       <div class="panel-title">اختر نوع الحلوى</div>
       <div class="panel-subtitle">اختيار واحد · انقر للتحديد</div>
@@ -874,401 +952,51 @@ function bindCursorHover(){
 }
 bindCursorHover();
 
-/* ═══════════════════════════════════════════════════
-   3D CAKE BUILD ANIMATION — Canvas 2D с перспективой
-═══════════════════════════════════════════════════ */
+/* ═══════ VIDEO HERO ═══════ */
 (function(){
-  const canvas=document.getElementById('cakeCanvas');
-  const ctx=canvas.getContext('2d');
+  const video = document.getElementById('heroVideo');
+  if(!video) return;
 
-  function resize(){
-    canvas.width=canvas.offsetWidth;
-    canvas.height=canvas.offsetHeight;
+  // Try to play (some browsers block autoplay even with muted)
+  const playPromise = video.play();
+  if(playPromise !== undefined){
+    playPromise.catch(()=>{
+      // Autoplay blocked — show fallback image via poster already set
+      video.classList.add('errored');
+    });
   }
-  resize();
-  window.addEventListener('resize',resize);
 
-  // Animation timeline: phases
-  // 0-2s: dark bg, first layer rises from bottom (plate)
-  // 2-4s: second layer drops + cream drip
-  // 4-6s: top tier + flowers appear
-  // 6-8s: candles light up one by one
-  // 8-10s: full cake rotates slowly, sparkles fly
-  // 10s+: idle loop with slow rotation + floating sparkles
-
-  const startTime=performance.now();
-  let phase=0;
-  let mouseX=0,mouseY=0;
-  canvas.addEventListener('mousemove',e=>{
-    const r=canvas.getBoundingClientRect();
-    mouseX=(e.clientX-r.left)/r.width-0.5;
-    mouseY=(e.clientY-r.top)/r.height-0.5;
+  // If video fails to load, show fallback
+  video.addEventListener('error', ()=>{
+    video.classList.add('errored');
   });
 
-  // Sparkles pool
-  const sparkles=[];
-  function spawnSparkle(x,y,col){
-    sparkles.push({x,y,vx:(Math.random()-0.5)*3,vy:-(1+Math.random()*3),life:1,col:col||'#E8C97A',size:2+Math.random()*3});
-  }
-
-  // Drips state
-  const drips=[];
-  function spawnDrip(x,startY,col){
-    drips.push({x,y:startY,targetY:startY+30+Math.random()*20,col,life:0,speed:0.012+Math.random()*0.01});
-  }
-
-  // Candles state
-  const candlePositions=[];
-  let candlesLit=0;
-
-  // Floating particles
-  const floats=[];
-  for(let i=0;i<20;i++){
-    floats.push({x:Math.random()*430,y:Math.random()*600,r:0.5+Math.random()*1.5,speed:0.2+Math.random()*0.5,phase:Math.random()*Math.PI*2});
-  }
-
-  function ease(t){return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
-
-  function drawEllipse(cx,cy,rx,ry,fill,stroke,strokeW){
-    ctx.beginPath();
-    ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);
-    if(fill){ctx.fillStyle=fill;ctx.fill();}
-    if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=strokeW||1.5;ctx.stroke();}
-  }
-
-  function drawLayer(cx,topY,w,h,fillTop,fillSide,fillBottom,alpha){
-    ctx.globalAlpha=alpha||1;
-    // Side face (trapezoid — 3D illusion)
-    const bw=w*1.08;
-    ctx.beginPath();
-    ctx.moveTo(cx-w/2,topY);
-    ctx.lineTo(cx+w/2,topY);
-    ctx.lineTo(cx+bw/2,topY+h);
-    ctx.lineTo(cx-bw/2,topY+h);
-    ctx.closePath();
-    ctx.fillStyle=fillSide;
-    ctx.fill();
-    // Top ellipse
-    drawEllipse(cx,topY,w/2,w*0.14,fillTop,'rgba(255,255,255,0.15)',1);
-    // Bottom ellipse (shadow)
-    drawEllipse(cx,topY+h,bw/2,bw*0.14,fillBottom||'rgba(0,0,0,0.25)',null);
-    ctx.globalAlpha=1;
-  }
-
-  function drawCream(cx,y,w,col,alpha){
-    ctx.globalAlpha=alpha||1;
-    const pts=[];
-    const n=18;
-    for(let i=0;i<n;i++){
-      const angle=(i/n)*Math.PI*2;
-      const r=w/2+Math.sin(angle*6)*5+Math.cos(angle*3)*3;
-      pts.push({x:cx+Math.cos(angle)*r,y:y+Math.sin(angle)*r*0.25});
+  // Slow zoom-in effect via CSS keyframe on the video itself
+  video.style.animation = 'videoZoom 20s ease-in-out infinite alternate';
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes videoZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.06); }
     }
-    ctx.beginPath();
-    ctx.moveTo(pts[0].x,pts[0].y);
-    for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i].x,pts[i].y);
-    ctx.closePath();
-    ctx.fillStyle=col;
-    ctx.fill();
-    ctx.globalAlpha=1;
-  }
-
-  function drawCandle(cx,y,lit,litProgress){
-    // Wax
-    const cH=22,cW=5;
-    ctx.fillStyle='#FAF6F0';
-    ctx.fillRect(cx-cW/2,y-cH,cW,cH);
-    ctx.fillStyle='#DDD';
-    ctx.fillRect(cx-cW/2,y-cH,cW,2);
-    // Wick
-    ctx.strokeStyle='#444';
-    ctx.lineWidth=1;
-    ctx.beginPath();ctx.moveTo(cx,y-cH);ctx.lineTo(cx,y-cH-6);ctx.stroke();
-    // Flame
-    if(lit&&litProgress>0){
-      ctx.globalAlpha=litProgress;
-      // Outer glow
-      const grad=ctx.createRadialGradient(cx,y-cH-10,0,cx,y-cH-10,18);
-      grad.addColorStop(0,'rgba(255,200,50,0.6)');
-      grad.addColorStop(1,'rgba(255,100,0,0)');
-      ctx.fillStyle=grad;
-      ctx.beginPath();ctx.ellipse(cx,y-cH-10,18,18,0,0,Math.PI*2);ctx.fill();
-      // Flame shape
-      ctx.fillStyle='rgba(255,220,60,0.95)';
-      ctx.beginPath();
-      ctx.moveTo(cx,y-cH-6);
-      ctx.bezierCurveTo(cx+5,y-cH-12,cx+4,y-cH-20,cx,y-cH-24);
-      ctx.bezierCurveTo(cx-4,y-cH-20,cx-5,y-cH-12,cx,y-cH-6);
-      ctx.fill();
-      // Inner blue
-      ctx.fillStyle='rgba(100,180,255,0.7)';
-      ctx.beginPath();
-      ctx.moveTo(cx,y-cH-8);
-      ctx.bezierCurveTo(cx+2,y-cH-12,cx+2,y-cH-17,cx,y-cH-20);
-      ctx.bezierCurveTo(cx-2,y-cH-17,cx-2,y-cH-12,cx,y-cH-8);
-      ctx.fill();
-      ctx.globalAlpha=1;
-    }
-  }
-
-  function drawRose(cx,cy,r,col,alpha){
-    ctx.globalAlpha=alpha||1;
-    const petals=6;
-    for(let i=0;i<petals;i++){
-      const angle=(i/petals)*Math.PI*2;
-      const px=cx+Math.cos(angle)*r*0.6;
-      const py=cy+Math.sin(angle)*r*0.6*0.5;
-      ctx.beginPath();
-      ctx.ellipse(px,py,r*0.55,r*0.35,angle,0,Math.PI*2);
-      ctx.fillStyle=col;
-      ctx.fill();
-    }
-    ctx.beginPath();ctx.arc(cx,cy,r*0.35,0,Math.PI*2);
-    ctx.fillStyle=col;ctx.fill();
-    ctx.globalAlpha=1;
-  }
-
-  function drawGoldAccent(cx,y,w,alpha){
-    ctx.globalAlpha=alpha||1;
-    ctx.strokeStyle='#C4965A';
-    ctx.lineWidth=1.5;
-    ctx.setLineDash([4,6]);
-    ctx.beginPath();
-    const bw=w*1.08;
-    ctx.moveTo(cx-w/2,y+4);
-    for(let i=0;i<=20;i++){
-      const t=i/20;
-      const x=cx-bw/2+bw*t;
-      const wvy=Math.sin(t*Math.PI*4)*3;
-      ctx.lineTo(x,y+4+wvy);
-    }
-    ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.globalAlpha=1;
-  }
-
-  function drawBackground(t){
-    const W=canvas.width,H=canvas.height;
-    // Gradient background
-    const g=ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0,'#0A0806');
-    g.addColorStop(0.5,'#1C1005');
-    g.addColorStop(1,'#050301');
-    ctx.fillStyle=g;
-    ctx.fillRect(0,0,W,H);
-
-    // Ambient gold circle
-    const glow=ctx.createRadialGradient(W/2,H*0.38,0,W/2,H*0.38,180);
-    glow.addColorStop(0,`rgba(196,150,90,${0.06+Math.sin(t*0.5)*0.02})`);
-    glow.addColorStop(1,'rgba(196,150,90,0)');
-    ctx.fillStyle=glow;
-    ctx.fillRect(0,0,W,H);
-  }
-
-  function frame(now){
-    requestAnimationFrame(frame);
-    const W=canvas.width,H=canvas.height;
-    const elapsed=(now-startTime)/1000;
-    const cx=W/2+mouseX*18;
-    const baseY=H*0.72;
-
-    drawBackground(elapsed);
-
-    // Floating ambient particles
-    floats.forEach(p=>{
-      p.y-=p.speed;
-      if(p.y<-10) p.y=H+10;
-      ctx.globalAlpha=0.25+Math.sin(elapsed*0.8+p.phase)*0.15;
-      ctx.fillStyle='#C4965A';
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
-      ctx.globalAlpha=1;
-    });
-
-    // ── Phase transitions ──
-    // Layer 1 (bottom) — rise from y=H, appears 0.3s
-    const l1progress=clamp(ease(clamp((elapsed-0.3)/1.2,0,1)),0,1);
-    // Layer 2 — drops from above at t=1.8
-    const l2progress=clamp(ease(clamp((elapsed-1.8)/1.0,0,1)),0,1);
-    // Cream drip on layer 1 at t=2.2
-    const cream1alpha=clamp(ease(clamp((elapsed-2.2)/0.6,0,1)),0,1);
-    // Layer 3 (top tier) rises at t=2.8
-    const l3progress=clamp(ease(clamp((elapsed-2.8)/0.9,0,1)),0,1);
-    // Roses appear at t=3.8
-    const rosesAlpha=clamp(ease(clamp((elapsed-3.8)/0.8,0,1)),0,1);
-    // Gold accents at t=4.2
-    const goldAlpha=clamp(ease(clamp((elapsed-4.2)/0.6,0,1)),0,1);
-    // Candles at t=4.8 (one every 0.4s)
-    const candleBaseT=4.8;
-    // Full reveal sparkle burst at t=5.5
-    const burstDone=elapsed>5.5&&elapsed<6.2;
-
-    // Layer sizes
-    const L1W=150,L1H=54;
-    const L2W=115,L2H=46;
-    const L3W=76,L3H=36;
-
-    // Layer 1 bottom
-    const l1y=baseY-(L1H*l1progress);
-    if(l1progress>0){
-      drawLayer(cx,l1y,L1W,L1H,'#D4956A','#B07344','rgba(80,40,10,0.5)',l1progress);
-      // Gold trim
-      drawGoldAccent(cx,l1y,L1W,l1progress*goldAlpha);
-      drawGoldAccent(cx,l1y+L1H,L1W,l1progress*goldAlpha);
-    }
-
-    // Cream on layer 1
-    if(cream1alpha>0&&l1progress>0.5){
-      const cY=l1y+2;
-      drawCream(cx,cY,L1W+6,'rgba(250,242,228,0.95)',cream1alpha);
-      // Drip marks
-      ctx.globalAlpha=cream1alpha*0.8;
-      ctx.fillStyle='#FAF2E4';
-      for(let d=0;d<6;d++){
-        const dx=cx-L1W*0.38+d*L1W*0.15;
-        const dh=8+Math.sin(d*1.3)*6;
-        ctx.beginPath();
-        ctx.ellipse(dx,cY+dh,3.5,dh,0,0,Math.PI*2);
-        ctx.fill();
-      }
-      ctx.globalAlpha=1;
-    }
-
-    // Layer 2
-    if(l2progress>0){
-      const dropFrom=l1y-60;
-      const l2y=l1y-(L2H*l2progress)-4;
-      const actualL2y=dropFrom+(l2y-dropFrom)*l2progress;
-      drawLayer(cx,actualL2y,L2W,L2H,'#C9895E','#A36840','rgba(60,30,8,0.5)',l2progress);
-      drawGoldAccent(cx,actualL2y,L2W,l2progress*goldAlpha);
-      drawGoldAccent(cx,actualL2y+L2H,L2W,l2progress*goldAlpha);
-
-      // Cream on layer 2
-      if(l2progress>0.7){
-        const a2=clamp(ease(clamp((elapsed-2.9)/0.5,0,1)),0,1);
-        drawCream(cx,actualL2y+2,L2W+5,'rgba(250,240,220,0.9)',a2);
-        ctx.globalAlpha=a2*0.7;
-        ctx.fillStyle='#FAF0DC';
-        for(let d=0;d<4;d++){
-          const dx=cx-L2W*0.35+d*L2W*0.23;
-          const dh=6+Math.sin(d*2.1)*5;
-          ctx.beginPath();
-          ctx.ellipse(dx,actualL2y+2+dh,3,dh,0,0,Math.PI*2);
-          ctx.fill();
-        }
-        ctx.globalAlpha=1;
-      }
-
-      // Layer 3 (top tier)
-      if(l3progress>0){
-        const l3y=actualL2y-(L3H*l3progress)-4;
-        const l3drop=actualL2y-50;
-        const actualL3y=l3drop+(l3y-l3drop)*l3progress;
-        drawLayer(cx,actualL3y,L3W,L3H,'#BE7F54','#96583A','rgba(50,25,6,0.5)',l3progress);
-        drawGoldAccent(cx,actualL3y,L3W,l3progress*goldAlpha);
-
-        // Cream top tier
-        if(l3progress>0.6){
-          const a3=clamp(ease(clamp((elapsed-3.6)/0.4,0,1)),0,1);
-          drawCream(cx,actualL3y+2,L3W+4,'rgba(255,248,235,0.95)',a3);
-        }
-
-        // Roses on top and sides
-        if(rosesAlpha>0){
-          const roseColors=['#D4606A','#C45A8A','#E8708A','#BE4A6A'];
-          const rosePositions=[
-            {x:cx,y:actualL3y-8,r:12},
-            {x:cx-22,y:actualL3y-4,r:9},
-            {x:cx+22,y:actualL3y-4,r:9},
-            {x:cx-44,y:l1y-6,r:8},
-            {x:cx+44,y:l1y-6,r:8},
-            {x:cx-28,y:actualL2y-5,r:8},
-            {x:cx+28,y:actualL2y-5,r:8},
-          ];
-          rosePositions.forEach((rp,i)=>{
-            const rDelay=i*0.12;
-            const ra=clamp(ease(clamp((rosesAlpha-rDelay)/0.5,0,1)),0,1);
-            drawRose(rp.x,rp.y,rp.r,roseColors[i%roseColors.length],ra);
-          });
-
-          // Leaves
-          ctx.globalAlpha=rosesAlpha*0.8;
-          ctx.fillStyle='#5A8A3A';
-          [[cx-10,actualL3y-5],[cx+12,actualL3y-5],[cx-36,actualL2y-4],[cx+36,actualL2y-4]].forEach(([lx,ly])=>{
-            ctx.beginPath();
-            ctx.ellipse(lx,ly,8,4,Math.PI*0.3,0,Math.PI*2);
-            ctx.fill();
-            ctx.beginPath();
-            ctx.ellipse(lx,ly,8,4,-Math.PI*0.3,0,Math.PI*2);
-            ctx.fill();
-          });
-          ctx.globalAlpha=1;
-        }
-
-        // Candles on top tier
-        const nCandles=3;
-        for(let c=0;c<nCandles;c++){
-          const cDelay=candleBaseT+c*0.45;
-          const litP=clamp(ease(clamp((elapsed-cDelay)/0.4,0,1)),0,1);
-          if(litP>0){
-            const cx2=cx+(c-1)*18;
-            drawCandle(cx2,actualL3y,litP>0.5,clamp((litP-0.5)*2,0,1));
-            // Spawn sparkles when candle lights
-            if(elapsed>cDelay+0.45&&elapsed<cDelay+0.8&&Math.random()<0.3){
-              spawnSparkle(cx2,actualL3y-42,'#FFD060');
-            }
-          }
-        }
-      }
-    }
-
-    // Plate base
-    if(l1progress>0.2){
-      const plateA=clamp(ease(clamp((elapsed-0.2)/0.5,0,1)),0,1);
-      ctx.globalAlpha=plateA*l1progress;
-      drawEllipse(cx,baseY+6,L1W*0.62,L1W*0.62*0.18,'#1A1008','rgba(196,150,90,0.3)',1.5);
-      drawEllipse(cx,baseY+4,L1W*0.58,L1W*0.58*0.18,'#2A1A0A','rgba(196,150,90,0.5)',1);
-      ctx.globalAlpha=1;
-    }
-
-    // Burst of sparkles at full reveal
-    if(burstDone&&Math.random()<0.5){
-      const sx=cx+(Math.random()-0.5)*160;
-      const sy=baseY-160*Math.random();
-      spawnSparkle(sx,sy,Math.random()>0.5?'#E8C97A':'#FF8090');
-    }
-
-    // Update & draw sparkles
-    for(let i=sparkles.length-1;i>=0;i--){
-      const s=sparkles[i];
-      s.x+=s.vx;
-      s.y+=s.vy;
-      s.vy+=0.08;
-      s.life-=0.025;
-      if(s.life<=0){sparkles.splice(i,1);continue;}
-      ctx.globalAlpha=s.life;
-      ctx.fillStyle=s.col;
-      ctx.beginPath();
-      // Star shape
-      for(let p=0;p<4;p++){
-        const a=(p/4)*Math.PI*2;
-        const r=p%2===0?s.size:s.size*0.4;
-        const px2=s.x+Math.cos(a)*r;
-        const py2=s.y+Math.sin(a)*r;
-        p===0?ctx.moveTo(px2,py2):ctx.lineTo(px2,py2);
-      }
-      ctx.closePath();ctx.fill();
-      ctx.globalAlpha=1;
-    }
-
-    // Idle sparkles after full build
-    if(elapsed>6.5&&Math.random()<0.08){
-      spawnSparkle(cx+(Math.random()-0.5)*180,baseY-80-Math.random()*120,'#E8C97A');
-    }
-  }
-
-  requestAnimationFrame(frame);
+    #heroVideo { transform-origin: center center; }
+  `;
+  document.head.appendChild(style);
 })();
+
+/* ═══════ SOUND TOGGLE ═══════ */
+let videoMuted = true;
+function toggleSound(){
+  const video = document.getElementById('heroVideo');
+  const icon  = document.getElementById('soundIcon');
+  const label = document.getElementById('soundLabel');
+  if(!video) return;
+  videoMuted = !videoMuted;
+  video.muted = videoMuted;
+  icon.textContent  = videoMuted ? '🔇' : '🔊';
+  label.textContent = videoMuted ? 'صامت' : 'صوت';
+  if(!videoMuted) video.play();
+}
 
 /* ═══════ PARTICLES ═══════ */
 (function(){
@@ -1552,3 +1280,5 @@ function resetConfig(){
 </script>
 </body>
 </html>
+HTMLEOF
+echo "Done: $(wc -c < /mnt/user-data/outputs/moni_cook.html) bytes"
