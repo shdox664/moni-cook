@@ -449,41 +449,59 @@ $('#logoutBtn').addEventListener('click',async()=>{
  $('#login').classList.add('show');$('#loginErr').textContent='';
 });
 
-/* Start safely: do not attempt connection until new project credentials are supplied. */
+/* Start safely: initialize the client only when the library and credentials exist. */
 setTheme(document.documentElement.dataset.theme||'light');
 render();
+
 if(!window.supabase||!window.supabase.createClient){
- setConnection(false,'تعذر تحميل مكتبة Supabase');
- showNotice('تعذر تحميل مكتبة Supabase JS. تحقق من اتصال الإنترنت.',true);
-}else if (
+  setConnection(false,'تعذر تحميل مكتبة Supabase');
+  showNotice('تعذر تحميل مكتبة Supabase JS. تحقق من الإنترنت أو جرّب تحديث الصفحة.',true);
+  $('#login').classList.add('show');
+  $('#loginErr').textContent='لم يتم تحميل مكتبة Supabase. تحقق من اتصال الإنترنت.';
+}else if(
   SUPABASE_URL === 'YOUR_NEW_SUPABASE_PROJECT_URL' ||
   SUPABASE_PUBLISHABLE_KEY === 'YOUR_NEW_SUPABASE_PUBLISHABLE_KEY'
-) {
-  setConnection(false, 'الإعدادات غير مكتملة');
+){
+  setConnection(false,'الإعدادات غير مكتملة');
   $('#login').classList.add('show');
-  $('#loginErr').textContent =
-    'أضف رابط ومفتاح Publishable لمشروع Supabase الجديد داخل الكود.';
-} else {
-  sb = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY,
-    {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true
+  $('#loginErr').textContent='أضف رابط ومفتاح Publishable لمشروع Supabase الجديد داخل الكود.';
+}else{
+  try{
+    sb=window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth:{
+          persistSession:true,
+          autoRefreshToken:true,
+          detectSessionInUrl:true
+        }
       }
-    }
-  );
-}
- sb.auth.getSession().then(({data,error})=>{
-  if(error){setConnection(false,'خطأ في الجلسة');$('#login').classList.add('show');$('#loginErr').textContent=error.message;}
-  else if(data.session)enter();
-  else $('#login').classList.add('show');
- }).catch(error=>{
-  setConnection(false,'خطأ في الاتصال');$('#login').classList.add('show');
-  $('#loginErr').textContent='خطأ عند بدء الصفحة: '+(error.message||'غير معروف');
- });
+    );
+
+    // لا تستدعِ sb.auth إلا بعد نجاح إنشاء العميل.
+    sb.auth.getSession().then(({data,error})=>{
+      if(error){
+        setConnection(false,'خطأ في الجلسة');
+        $('#login').classList.add('show');
+        $('#loginErr').textContent=error.message;
+      }else if(data.session){
+        enter();
+      }else{
+        $('#login').classList.add('show');
+      }
+    }).catch(error=>{
+      setConnection(false,'خطأ في الاتصال');
+      $('#login').classList.add('show');
+      $('#loginErr').textContent='خطأ عند بدء الصفحة: '+(error.message||'غير معروف');
+    });
+  }catch(error){
+    sb=null;
+    console.error('Supabase initialization failed:',error);
+    setConnection(false,'فشل تهيئة الاتصال');
+    $('#login').classList.add('show');
+    $('#loginErr').textContent='تعذر إنشاء اتصال Supabase: '+(error.message||'تحقق من الإعدادات');
+  }
 }
 </script>
 </body>
