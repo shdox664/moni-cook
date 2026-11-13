@@ -174,9 +174,9 @@ main{padding:30px 0 60px}
    استخدم Project URL وPublishable key فقط في المتصفح.
    لا تضع service_role key في هذا الملف مطلقاً.
 ========================================================= */
-const SUPABASE_URL = 'YOUR_NEW_SUPABASE_PROJECT_URL';
-const SUPABASE_PUBLISHABLE_KEY = 'YOUR_NEW_SUPABASE_PUBLISHABLE_KEY';
+const SUPABASE_URL = 'https://ksrnhfsczfzwfkzuylye.supabase.co';
 
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_RRsGAAVV6wjM-RW-jmoYEg_9iEFbKQS';
 const $ = (selector) => document.querySelector(selector);
 const STATUS = {
  pending:{label:'قيد الانتظار',icon:'◷'},
@@ -455,14 +455,27 @@ render();
 if(!window.supabase||!window.supabase.createClient){
  setConnection(false,'تعذر تحميل مكتبة Supabase');
  showNotice('تعذر تحميل مكتبة Supabase JS. تحقق من اتصال الإنترنت.',true);
-}else if(SUPABASE_URL==='https://ksrnhfsczfzwfkzuylye.supabase.co'||SUPABASE_PUBLISHABLE_KEY==='sb_publishable_RRsGAAVV6wjM-RW-jmoYEg_9iEFbKQS'){
- setConnection(false,'الإعدادات غير مكتملة');
- $('#login').classList.add('show');
- $('#loginErr').textContent='أضف رابط ومفتاح Publishable لمشروع Supabase الجديد داخل الكود.';
-}else{
- sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
-  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
- });
+}else if (
+  SUPABASE_URL === 'YOUR_NEW_SUPABASE_PROJECT_URL' ||
+  SUPABASE_PUBLISHABLE_KEY === 'YOUR_NEW_SUPABASE_PUBLISHABLE_KEY'
+) {
+  setConnection(false, 'الإعدادات غير مكتملة');
+  $('#login').classList.add('show');
+  $('#loginErr').textContent =
+    'أضف رابط ومفتاح Publishable لمشروع Supabase الجديد داخل الكود.';
+} else {
+  sb = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
+}
  sb.auth.getSession().then(({data,error})=>{
   if(error){setConnection(false,'خطأ في الجلسة');$('#login').classList.add('show');$('#loginErr').textContent=error.message;}
   else if(data.session)enter();
