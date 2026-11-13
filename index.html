@@ -186,7 +186,8 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const STATUS = {
  pending: {label:'قيد الانتظار',icon:'◷'},
  confirmed: {label:'تم التأكيد',icon:'✓'},
- cancelled: {label:'ملغى',icon:'×'}
+ cancelled: {label:'ملغى',icon:'×'},
+  delivered: {label:'تم التسليم',icon:'✓'}
 };
 
 let filter = 'all';
@@ -202,21 +203,28 @@ function escapeHTML(value) {
 
 /* تحويل صف قاعدة البيانات إلى شكل الطلب المستخدم في الواجهة */
 function mapRow(r) {
- return {
-  id:r.id, date:r.created_at, name:r.name, surname:r.surname, phone:r.phone,
-  wilayaCode:r.wilaya_code, wilayaAr:r.wilaya_ar, commune:r.commune,
-  productAr:r.product_ar, size:r.size, colorAr:r.color_ar, colorHex:r.color_hex,
-  qty:r.qty, total:r.total, status:r.status
- };
+  return {
+    id:r.id, date:r.created_at,
+    name:r.customer_name, surname:r.customer_surname, phone:r.phone,
+    wilayaCode:r.wilaya_code, wilayaAr:r.wilaya_ar, commune:r.commune,
+    productAr:r.product_name_ar, size:r.size, colorAr:r.color_ar,
+    colorHex:r.color_hex, qty:r.quantity, total:r.total_amount, status:r.status
+  };
 }
 
 function loadOrders() { return ORDERS; }
 
 async function fetchOrders() {
- const { data, error } = await sb.from('orders').select('*').order('created_at',{ascending:false});
- if (error) { console.error(error); alert('تعذّر تحميل الطلبات'); return; }
- ORDERS = data.map(mapRow);
- render();
+  const { data, error } = await sb.from('orders').select('*').order('created_at',{ascending:false});
+  if (error) {
+    console.error('Supabase orders error:', error);
+    $('#loginErr').textContent = 'تعذر تحميل الطلبات: ' + error.message;
+    alert('تعذر تحميل الطلبات: ' + error.message);
+    return false;
+  }
+  ORDERS = (data || []).map(mapRow);
+  render();
+  return true;
 }
 
 function money(value) { return (Number(value) || 0).toLocaleString('ar-DZ') + ' دج'; }
@@ -229,7 +237,7 @@ function dateText(value) {
 /* Statistics */
 function getStats(orders) {
  const count = status => orders.filter(order => order.status === status).length;
- const revenue = orders.filter(order => order.status === 'confirmed').reduce((sum, order) => sum + (Number(order.total) || 0), 0);
+ const revenue = orders.filter(order => ['confirmed','delivered'].includes(order.status)).reduce((sum, order) => sum + (Number(order.total) || 0), 0);
  return [
   {label:'كل الطلبات',value:orders.length,icon:'▤',className:'total'},
   {label:'قيد الانتظار',value:count('pending'),icon:'◷',className:'pending'},
@@ -254,6 +262,7 @@ function renderTabs(orders) {
   ['all','الكل',orders.length],
   ['pending','قيد الانتظار',orders.filter(o => o.status === 'pending').length],
   ['confirmed','تم التأكيد',orders.filter(o => o.status === 'confirmed').length],
+   ['delivered','تم التسليم',orders.filter(o => o.status === 'delivered').length],
   ['cancelled','ملغى',orders.filter(o => o.status === 'cancelled').length]
  ];
  $('#tabs').innerHTML = definitions.map(([key,label,count]) => `
@@ -389,24 +398,51 @@ function startRealtime() {
 }
 
 async function enter() {
- $('#login').classList.remove('show');
- await fetchOrders();
- startRealtime();
+  const { data: { user }, error: userError } = await sb.auth.getUser();
+  if (userError || !user) {
+    $('#login').classList.add('show');
+    $('#loginErr').textContent = 'تعذر التحقق من جلسة المستخدم. سجّل الدخول مجدداً.';
+    return false;
+  }
+
+  const { data: profile, error: profileError } = await sb
+    .from('profiles').select('role').eq('user_id', user.id).single();
+
+  if (profileError || profile?.role !== 'admin') {
+    await sb.auth.signOut();
+    $('#login').classList.add('show');
+    $('#loginErr').textContent = 'الحساب لا يملك صلاحية المسؤول. يجب أن تكون role = admin في جدول profiles.';
+    return false;
+  }
+
+  $('#login').classList.remove('show');
+  const loaded = await fetchOrders();
+  if (loaded) startRealtime();
+  return loaded;
 }
 
 $('#loginForm').addEventListener('submit', async event => {
- event.preventDefault();
- const btn = $('#loginBtn');
- btn.disabled = true;
- $('#loginErr').textContent = '';
- const { error } = await sb.auth.signInWithPassword({
-  email: $('#email').value.trim(),
-  password: $('#pass').value
- });
- btn.disabled = false;
- if(error) { $('#loginErr').textContent = 'البريد أو كلمة المرور غير صحيحة'; return; }
- $('#pass').value = '';
- enter();
+  event.preventDefault();
+  const btn = $('#loginBtn');
+  btn.disabled = true;
+  $('#loginErr').textContent = '';
+  try {
+    const { error } = await sb.auth.signInWithPassword({
+      email: $('#email').value.trim(),
+      password: $('#pass').value
+    });
+    if (error) {
+      $('#loginErr').textContent = 'فشل تسجيل الدخول: ' + error.message;
+      return;
+    }
+    $('#pass').value = '';
+    await enter();
+  } catch (error) {
+    console.error('Login exception:', error);
+    $('#loginErr').textContent = 'خطأ في الاتصال: ' + (error.message || 'تحقق من الإنترنت وإعدادات Supabase');
+  } finally {
+    btn.disabled = false;
+  }
 });
 
 $('#logoutBtn').addEventListener('click', async () => {
@@ -420,8 +456,18 @@ $('#logoutBtn').addEventListener('click', async () => {
 /* Start */
 setTheme(document.documentElement.dataset.theme || 'light');
 render();
-sb.auth.getSession().then(({data}) => {
- if(data.session) enter(); else $('#login').classList.add('show');
+sb.auth.getSession().then(({data, error}) => {
+  if (error) {
+    $('#login').classList.add('show');
+    $('#loginErr').textContent = 'تعذر الاتصال بـ Supabase: ' + error.message;
+  } else if (data.session) {
+    enter();
+  } else {
+    $('#login').classList.add('show');
+  }
+}).catch(error => {
+  $('#login').classList.add('show');
+  $('#loginErr').textContent = 'خطأ عند بدء الصفحة: ' + (error.message || 'غير معروف');
 });
 </script>
 </body>
